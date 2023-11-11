@@ -16,7 +16,7 @@ const SplashScreen: FC<Props> = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.logoWrapper}>
         <Image
-          source={require('../../assets/images/logo2.png')}
+          source={require('../../assets/images/logo.png')}
           style={styles.logo}
         />
       </View>

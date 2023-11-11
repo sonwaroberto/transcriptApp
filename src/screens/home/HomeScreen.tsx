@@ -23,9 +23,12 @@ const HomeScreen: FC<Props> = ({navigation}) => {
         <View style={styles.section2}>
           <View style={[styles.section]}>
             <Text style={[styles.title, styles.appTitle]}>
-              Welcome on <Text style={styles.appName}>E-transcript</Text>
+              Welcome on <Text style={styles.appName}>E-Transcript</Text>
             </Text>
-            <Text style={styles.subtitle}>Get your transcript...</Text>
+            <Text style={styles.subtitle}>
+              Get your transcript in just a few clicks and minutes. Save
+              valuable time!
+            </Text>
             <Button
               onPress={() => navigation.navigate('Register')}
               btnText="Register Now"
