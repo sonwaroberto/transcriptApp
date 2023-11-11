@@ -48,8 +48,9 @@ const OnboardingScreen: FC<Props> = ({navigation}) => {
               source={require('../../assets/images/onboarding-img1.png')}
             />
           ),
-          title: 'title',
-          subtitle: 'body.',
+          title: 'Seamless Transcript Requests',
+          subtitle:
+            'Log in, request transcripts with a click, and enjoy a streamlined experience from request to download.',
         },
         {
           backgroundColor: theme.secondary,
@@ -58,8 +59,9 @@ const OnboardingScreen: FC<Props> = ({navigation}) => {
               source={require('../../assets/images/onboarding-img2.png')}
             />
           ),
-          title: 'title',
-          subtitle: 'body.',
+          title: 'Speedy and Secure',
+          subtitle:
+            'Choose processing speed, make secure payments, and track progress in real-time for a hassle-free experience.',
         },
         {
           backgroundColor: theme.tertiary,
@@ -68,8 +70,9 @@ const OnboardingScreen: FC<Props> = ({navigation}) => {
               source={require('../../assets/images/onboarding-img3.png')}
             />
           ),
-          title: 'title',
-          subtitle: 'body',
+          title: 'User-Centric Features',
+          subtitle:
+            'Manage your profile, recover passwords, and enjoy a user-friendly experience. Welcome to simplicity with the E-Transcript App!',
         },
       ]}
     />

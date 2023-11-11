@@ -12,35 +12,33 @@ const styles = StyleSheet.create({
     padding: theme.screenWidth * 0.025,
     paddingTop: theme.screenHeight * 0.02,
   },
-  header:{
-
-  },
-  head:{
+  header: {},
+  head: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
-  notification:{
+  notification: {
     width: 40,
     height: 40,
   },
-  applyContainer:{
+  applyContainer: {
     marginTop: 20,
     width: theme.screenWidth * 0.42,
     height: theme.screenHeight * 0.55,
     backgroundColor: theme.primary,
     borderRadius: 10,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
-  transContainer:{
+  transContainer: {
     width: theme.screenWidth * 0.42,
     height: theme.screenHeight * 0.25,
     borderWidth: 1,
     borderColor: theme.primary,
     borderRadius: 10,
     padding: 10,
-    marginBottom: 15
-  }
+    marginBottom: 15,
+  },
 });
 
 export default styles;
