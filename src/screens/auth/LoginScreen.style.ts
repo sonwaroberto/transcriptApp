@@ -34,6 +34,47 @@ const styles = StyleSheet.create({
     marginBottom: 14,
     fontWeight: theme.fontWeightHeavy as TextStyle['fontWeight'],
   },
+  inputInvalidText: {
+    fontSize: theme.fontSizeExtraSmall,
+    color: theme.error,
+  },
+  formContainer: {
+    width: '100%',
+  },
+
+  icon: {
+    width: 30,
+    height: 30,
+  },
+
+  signUpContainer: {
+    flexDirection: 'row',
+    // marginVertical: 40,
+  },
+  text2: {
+    color: theme.black,
+    fontSize: theme.fontSizeNormal,
+    fontWeight: '600',
+  },
+  textSignUp: {
+    color: theme.primary,
+  },
+  buttonWrapper: {
+    width: '100%',
+    marginTop: 30,
+  },
+  forgotContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 16,
+  },
+  textForgot: {
+    color: theme.primary,
+    fontWeight: '600',
+  },
+  rememberMe: {
+    fontWeight: '600',
+  },
 });
 
 export default styles;

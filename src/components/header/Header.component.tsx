@@ -16,9 +16,9 @@ const Header: React.FC<Props> = ({headerName, color = theme.gray}) => {
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity
-        style={
-          headerName?.length > 15 ? styles.backArrowException : styles.backArrow
-        }
+        // style={
+        //   headerName?.length > 15 ? styles.backArrowException : styles.backArrow
+        // }
         onPress={() => navigation.goBack()}>
         <Icons icon={IconType.ARROW_LEFT} size={25} color={theme.black} />
       </TouchableOpacity>

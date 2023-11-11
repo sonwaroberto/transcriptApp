@@ -6,7 +6,7 @@ import LoginScreen from '../screens/auth/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
 import SplashScreen from '../screens/splash/splashScreen';
 import HomeScreen from '../screens/home/HomeScreen';
-// import DashboardScreen from '../screens/dashboard/dashboard/dashboard';
+import DashboardScreen from '../screens/dashboard/DashboardScreen';
 
 const Stack = createStackNavigator();
 const AuthStack: FC = () => {
@@ -17,7 +17,7 @@ const AuthStack: FC = () => {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
-      {/* <Stack.Screen name="Dashboard" component={DashboardScreen} /> */}
+      <Stack.Screen name="Dashboard" component={DashboardScreen} />
     </Stack.Navigator>
   );
 };
