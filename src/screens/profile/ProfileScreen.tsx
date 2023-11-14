@@ -3,6 +3,7 @@ import {SafeAreaView, View, Text, Image, TouchableOpacity, FlatList} from 'react
 import styles from './profile.style';
 import Avatar from '../../components/avatar/Avatar';
 import theme from '../../resources/theme';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 type Props = {
   navigation?: any;
@@ -13,18 +14,16 @@ const ProfileScreen: FC<Props> = ({navigation}) => {
     <SafeAreaView style={styles.safeContainer}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <View style={styles.head}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Avatar/>
-            </TouchableOpacity>
-            <Text style={styles.headerText}>Order</Text>
-            <Image
-              source={require('../../resources/icons/notification-bell.png')}
-              style={styles.notification}
-            />
-          </View>          
+              <Image
+                source={require('../../resources/icons/arrow-left.png')}
+                style={styles.notification}
+              />
+            </TouchableOpacity>           
         </View>
-        
+        <View style={styles.avatar}>
+          <Text style={styles.username}>NE</Text>
+        </View>
       </View>
     </SafeAreaView>
   );

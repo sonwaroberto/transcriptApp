@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { useTheme } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import OnboardingScreen from '../screens/onboardingscreen/onboardingScreen';
 import LoginScreen from '../screens/auth/LoginScreen';
@@ -27,16 +28,20 @@ const HomeTabs: FC = () => {
         name="Home"
         component={DashboardScreen}
         options={{
-          tabBarIcon: 'home',
-          tabBarColor: 'black',
+          tabBarIcon: ({ color }) => (
+            <Icon name="account" color={color} size={26} />
+          ),
+          tabBarColor: '#2196F3',
         }}
       />
       <BottomTab.Screen
         name="Order"
         component={OrderScreen}
         options={{
-          tabBarIcon: 'cart',
-          tabBarColor: 'black',
+          tabBarIcon: ({ color }) => (
+            <Icon name="toolbox" color={color} size={26} />
+          ),
+          tabBarColor: '#FF5722',
         }}
       />
     </BottomTab.Navigator>

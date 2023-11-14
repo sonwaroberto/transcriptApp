@@ -9,46 +9,36 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.white,
     minHeight: theme.completeScreenHeight * 0.99,
-    padding: theme.screenWidth * 0.025,
-    paddingTop: theme.screenHeight * 0.02,
   },
-  header: {},
-  head: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  header: {
+    width: theme.screenWidth,
+    height: theme.screenHeight * 0.6,
+    backgroundColor: theme.primary,
   },
-  notification: {
-    width: 40,
-    height: 40,
-  },
-  orderIcon: {
-    width: 40,
-    height: 60,
-  },
-  headerText: {
-    color: theme.black,
+  avatar: {
+    width: 80,
+    height: 80,
+    backgroundColor: theme.white,
+    borderRadius: 50,
+    alignItems: 'center',
+    position: 'absolute',
     alignSelf: 'center',
+    top: theme.screenHeight * 0.5,
+    borderWidth: 1,
+    borderColor: theme.primary
+  },
+  username: {
+    color: theme.primary,
     fontSize: 20,
     fontWeight: '600',
+    top: theme.screenHeight * 0.07,
+
   },
-  orders: {
-    flex: 1,
-    alignItems: 'center',
-    marginVertical: 5,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderBottomColor: '#DFDFDF',
-    paddingTop: theme.screenHeight * 0.03,
-    paddingBottom: theme.screenHeight * 0.05
-  },
-  status: {
-    textTransform: 'uppercase',
-    width: 100,
-    height: 30,
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    borderRadius: 20,
+  notification: {
+    width: 25,
+    height: 25,
+    left: theme.screenWidth * 0.03,
+    top: theme.screenHeight * 0.02
   },
 });
 
