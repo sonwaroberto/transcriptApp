@@ -34,7 +34,7 @@ const LoginScreen: FC<Props> = ({navigation}) => {
 
   const handleSignIn = async (values: InitialValuesInput) => {
     console.log('mein values', values);
-    navigation.navigate('Dashboard');
+    navigation.navigate('AuthTabs');
   };
 
   const renderForm = ({
