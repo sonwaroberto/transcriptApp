@@ -14,7 +14,9 @@ const DashboardScreen: FC<Props> = ({navigation}) => {
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.head}>
-            <Avatar />
+            <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+              <Avatar/>
+            </TouchableOpacity>
             <Image
               source={require('../../resources/icons/notification-bell.png')}
               style={styles.notification}

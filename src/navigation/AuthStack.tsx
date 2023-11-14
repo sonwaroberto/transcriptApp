@@ -10,6 +10,7 @@ import SplashScreen from '../screens/splash/splashScreen';
 import HomeScreen from '../screens/home/HomeScreen';
 import DashboardScreen from '../screens/dashboard/DashboardScreen';
 import OrderScreen from '../screens/orders/OrderScreen';
+import ProfileScreen from '../screens/profile/ProfileScreen';
 
 const Stack = createStackNavigator();
 const BottomTab = createMaterialBottomTabNavigator();
@@ -54,6 +55,7 @@ const AuthStack: FC = () => {
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Dashboard" component={DashboardScreen} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };
