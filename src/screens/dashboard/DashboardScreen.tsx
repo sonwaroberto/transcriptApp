@@ -1,12 +1,69 @@
 import React, {FC} from 'react';
-import {SafeAreaView, View, Text, Image, TouchableOpacity} from 'react-native';
+import {SafeAreaView, View, Text, Image, TouchableOpacity, FlatList} from 'react-native';
 import styles from './dashboard.style';
-import Button, {ButtonType} from '../../components/button/button';
 import Avatar from '../../components/avatar/Avatar';
+import theme from '../../resources/theme';
 
 type Props = {
   navigation?: any;
 };
+
+const appliedTranscript = [
+  {id: 1, number: 0o1},
+  {id: 2, number: 0o2},
+  {id: 3, number: 0o3},
+  {id: 4, number: 0o4},
+  {id: 5, number: 0o5}
+]
+
+const renderApplication = <FlatList
+  keyExtractor={transcript => transcript.id}
+  data={appliedTranscript}
+  renderItem={({item}) =>{
+    return (
+      <View style={styles.transContainer}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between', top: theme.screenHeight * 0.025, left: theme.screenWidth * 0.01}}>
+          <Image
+            source={require('../../resources/icons/summary.png')}
+            style={styles.transcript}
+          />
+          <Text style={{color: '#000', fontSize: 17, left: theme.screenWidth * 0.07}}>
+            Student Academic Record N-{item.number}
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginHorizontal: 55,
+            top: theme.screenHeight * 0.035,
+            left: theme.screenWidth * 0.01
+          }}>
+          <TouchableOpacity>
+            <Text
+              style={{
+                textDecorationLine: 'underline',
+                fontSize: 16,
+                color: '#2372E9',
+              }}>
+              View
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text
+              style={{
+                textDecorationLine: 'underline',
+                fontSize: 16,
+                color: '#2372E9',
+              }}>
+              Download
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }}
+/>
 
 const DashboardScreen: FC<Props> = ({navigation}) => {
   return (
@@ -14,23 +71,25 @@ const DashboardScreen: FC<Props> = ({navigation}) => {
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.head}>
-            <Avatar />
+            <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+              <Avatar/>
+            </TouchableOpacity>
             <Image
               source={require('../../resources/icons/notification-bell.png')}
               style={styles.notification}
             />
           </View>
           <View style={{marginTop: 10, display: 'flex', flexDirection: 'row'}}>
-            <Text style={{color: 'black'}}>Hello, </Text>
-            <Text style={{fontSize: 14, fontWeight: '800'}}>Neba Emmanuel</Text>
+            <Text style={{color: 'black', fontSize: theme.fontSizeNormal}}>Hello, </Text>
+            <Text style={{fontSize: theme.fontSizeNormal, fontWeight: '800', color: 'black'}}>Neba Emmanuel</Text>
           </View>
-          <Text style={{color: 'black'}}>keep Track of your Results!</Text>
+          <Text style={{color: 'black', fontSize: theme.fontSizeSmall}}>keep Track of your Results!</Text>
         </View>
         <View style={styles.applyContainer}>
           <View style={{flexDirection: 'row'}}>
             <Image
-              source={require('../../resources/icons/summary.png')}
-              style={styles.notification}
+              source={require('../../assets/images/apply.png')}
+              style={styles.apply}
             />
             <Text
               style={{
@@ -58,123 +117,7 @@ const DashboardScreen: FC<Props> = ({navigation}) => {
         </View>
         <View>
           <Text style={{color: '#000', marginVertical: 15}}>History</Text>
-          <View style={styles.transContainer}>
-            <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Image
-                source={require('../../resources/icons/summary.png')}
-                style={styles.notification}
-              />
-              <Text style={{color: '#000', fontSize: 17}}>
-                Student Academic Record N-001
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginHorizontal: 55,
-              }}>
-              <TouchableOpacity>
-                <Text
-                  style={{
-                    textDecorationLine: 'underline',
-                    fontSize: 16,
-                    color: '#2372E9',
-                  }}>
-                  View
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text
-                  style={{
-                    textDecorationLine: 'underline',
-                    fontSize: 16,
-                    color: '#2372E9',
-                  }}>
-                  Download
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.transContainer}>
-            <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Image
-                source={require('../../resources/icons/summary.png')}
-                style={styles.notification}
-              />
-              <Text style={{color: '#000', fontSize: 17}}>
-                Student Academic Record N-002
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginHorizontal: 55,
-              }}>
-              <TouchableOpacity>
-                <Text
-                  style={{
-                    textDecorationLine: 'underline',
-                    fontSize: 16,
-                    color: '#2372E9',
-                  }}>
-                  View
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text
-                  style={{
-                    textDecorationLine: 'underline',
-                    fontSize: 16,
-                    color: '#2372E9',
-                  }}>
-                  Download
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.transContainer}>
-            <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Image
-                source={require('../../resources/icons/summary.png')}
-                style={styles.notification}
-              />
-              <Text style={{color: '#000', fontSize: 17}}>
-                Student Academic Record N-003
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginHorizontal: 55,
-              }}>
-              <TouchableOpacity>
-                <Text
-                  style={{
-                    textDecorationLine: 'underline',
-                    fontSize: 16,
-                    color: '#2372E9',
-                  }}>
-                  View
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text
-                  style={{
-                    textDecorationLine: 'underline',
-                    fontSize: 16,
-                    color: '#2372E9',
-                  }}>
-                  Download
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          <>{renderApplication}</>
         </View>
       </View>
     </SafeAreaView>

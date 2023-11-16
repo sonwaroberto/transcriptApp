@@ -2,7 +2,7 @@ import {screenHeight, windowHeight, windowWidth} from '../../utils/dimensions';
 
 export default {
   // Colors
-  primary: '#2a79f3', // Blue
+  primary: '#007AFF', // Blue
   secondary: '#304676', // Dark Blue
   tertiary: '#2E94B9', // Dark
   error: '#E64646', // Red

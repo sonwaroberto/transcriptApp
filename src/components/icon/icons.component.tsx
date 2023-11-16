@@ -314,6 +314,9 @@ const Icons: React.FC<Props> = ({icon, size = 35, color}) => {
   if (icon === IconType.PROFILE2) {
     _icon = require('../../resources/icons/profile2.png');
   }
+  if (icon === IconType.ARROW_LEFT) {
+    _icon = require('../../resources/icons/arrow-left.png');
+  }
 
   return (
     <Image

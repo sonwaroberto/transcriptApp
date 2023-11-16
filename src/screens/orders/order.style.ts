@@ -21,33 +21,34 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
   },
-  apply: {
+  orderIcon: {
     width: 40,
-    height: 40,
-    // position: 'absolute'
+    height: 60,
   },
-  transcript: {
-    width: 40,
-    height: 50,
-    position: 'absolute'
+  headerText: {
+    color: theme.black,
+    alignSelf: 'center',
+    fontSize: 20,
+    fontWeight: '600',
   },
-  applyContainer: {
-    marginTop: 20,
-    width: theme.screenWidth * 0.42,
-    height: theme.screenHeight * 0.55,
-    backgroundColor: theme.primary,
-    borderRadius: 10,
+  orders: {
+    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    marginVertical: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: '#DFDFDF',
+    paddingTop: theme.screenHeight * 0.03,
+    paddingBottom: theme.screenHeight * 0.05
   },
-  transContainer: {
-    width: theme.screenWidth * 0.415,
-    height: theme.screenHeight * 0.25,
-    borderWidth: 1,
-    borderColor: theme.primary,
-    borderRadius: 10,
-    padding: 10,
-    marginBottom: 15,
+  status: {
+    textTransform: 'uppercase',
+    width: 100,
+    height: 30,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    borderRadius: 20,
   },
 });
 
