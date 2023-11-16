@@ -3,6 +3,7 @@ import {SafeAreaView, View, Text, Image, TouchableOpacity, FlatList} from 'react
 import styles from './dashboard.style';
 import Avatar from '../../components/avatar/Avatar';
 import theme from '../../resources/theme';
+import Icons, { IconType } from '../../components/icon/icons.component';
 
 type Props = {
   navigation?: any;
@@ -74,10 +75,7 @@ const DashboardScreen: FC<Props> = ({navigation}) => {
             <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
               <Avatar/>
             </TouchableOpacity>
-            <Image
-              source={require('../../resources/icons/notification-bell.png')}
-              style={styles.notification}
-            />
+            <Icons size={40} icon={IconType.NOTIFICATION} color={theme.black} />
           </View>
           <View style={{marginTop: 10, display: 'flex', flexDirection: 'row'}}>
             <Text style={{color: 'black', fontSize: theme.fontSizeNormal}}>Hello, </Text>
