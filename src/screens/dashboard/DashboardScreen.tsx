@@ -44,7 +44,8 @@ const DashboardScreen: FC<Props> = ({navigation}) => {
               Transcript Request
             </Text>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity
+          onPress={() => navigation.navigate('Apply')}>
             <Text
               style={{
                 textDecorationLine: 'underline',

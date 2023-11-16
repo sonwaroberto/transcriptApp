@@ -7,6 +7,7 @@ import RegisterScreen from '../screens/auth/RegisterScreen';
 import SplashScreen from '../screens/splash/splashScreen';
 import HomeScreen from '../screens/home/HomeScreen';
 import DashboardScreen from '../screens/dashboard/DashboardScreen';
+import ApplyForm from '../screens/applyForm/applyForm';
 
 const Stack = createStackNavigator();
 const AuthStack: FC = () => {
@@ -18,6 +19,7 @@ const AuthStack: FC = () => {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Dashboard" component={DashboardScreen} />
+      <Stack.Screen name="Apply" component={ApplyForm} />
     </Stack.Navigator>
   );
 };
