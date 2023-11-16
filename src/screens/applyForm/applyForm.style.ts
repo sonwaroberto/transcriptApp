@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
     },
     genderContainer: {
       flexDirection: 'row',
-      justifyContent: 'center', // center the buttons
-      alignItems: 'center',     // center vertically
+      justifyContent: 'center',
+      alignItems: 'center',     
       marginBottom: 16,
     },
     radioButton: {
@@ -58,10 +58,10 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       borderColor: '#2372E9',
       borderWidth: 1,
-      marginLeft: 10, // margin to the left of each radio option
+      marginLeft: 10, 
     },
     radioText: {
-      marginLeft: 10, // margin to the left of the "100"
+      marginLeft: 10, 
       color: '#2372E9',
     },
   
@@ -71,10 +71,41 @@ const styles = StyleSheet.create({
       padding: 10,
       alignItems: 'center',
       justifyContent: 'center',
-      borderColor: '#2372E9',  // Add this line for the border color
-      borderWidth: 1,         // Add this line to set the border width
+      borderColor: '#2372E9',  
+      borderWidth: 1,        
     },
     
+    // *** Load Screen Styles *** //
+
+    loadingContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f2f2f2',
+    },
+    loadingText: {
+      marginTop: 10,
+      fontSize: 18,
+      color: '#2372E9',
+    },
+
+    // *** Scucess Screen Styles ***//
+
+    successContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f2f2f2',
+    },
+    fireworksAnimation: {
+      width: 200,
+      height: 200,
+    },
+    successText: {
+      marginTop: 20,
+      fontSize: 24,
+      color: '#2372E9',
+    },
   });
   
   export default styles;

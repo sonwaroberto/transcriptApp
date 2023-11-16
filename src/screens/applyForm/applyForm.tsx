@@ -136,7 +136,7 @@ const ApplyForm: FC<Props> = ({navigation}) => {
         />
 
         {/* Submit Button */}
-        <TouchableOpacity style={styles.submitButton} onPress={() => navigation.navigate('Apply')}>
+        <TouchableOpacity style={styles.submitButton} onPress={() => navigation.navigate('sucessscreen')}>
           <Text style={{ color: 'white' }}>Apply</Text>
         </TouchableOpacity>
       </View>
