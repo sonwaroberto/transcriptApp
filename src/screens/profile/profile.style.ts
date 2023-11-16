@@ -9,11 +9,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.white,
     minHeight: theme.completeScreenHeight * 0.99,
+
   },
   header: {
     width: theme.screenWidth,
     height: theme.screenHeight * 0.6,
     backgroundColor: theme.primary,
+    paddingTop: theme.screenHeight * 0.04,
   },
   avatar: {
     width: 80,
@@ -39,6 +41,13 @@ const styles = StyleSheet.create({
     height: 25,
     left: theme.screenWidth * 0.03,
     top: theme.screenHeight * 0.02
+  },
+  buttonWrapper: {
+    width: '100%',
+    marginTop: 30,
+  },
+  formContainer: {
+    width: '100%',
   },
 });
 

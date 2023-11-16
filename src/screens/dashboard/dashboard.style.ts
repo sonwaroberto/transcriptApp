@@ -21,6 +21,16 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
   },
+  apply: {
+    width: 40,
+    height: 40,
+    // position: 'absolute'
+  },
+  transcript: {
+    width: 40,
+    height: 50,
+    position: 'absolute'
+  },
   applyContainer: {
     marginTop: 20,
     width: theme.screenWidth * 0.42,
@@ -31,7 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   transContainer: {
-    width: theme.screenWidth * 0.42,
+    width: theme.screenWidth * 0.415,
     height: theme.screenHeight * 0.25,
     borderWidth: 1,
     borderColor: theme.primary,
