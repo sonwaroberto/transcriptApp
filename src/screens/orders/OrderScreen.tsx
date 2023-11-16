@@ -3,6 +3,7 @@ import {SafeAreaView, View, Text, Image, TouchableOpacity, FlatList} from 'react
 import styles from './order.style';
 import Avatar from '../../components/avatar/Avatar';
 import theme from '../../resources/theme';
+import Icons, { IconType } from '../../components/icon/icons.component';
 
 type Props = {
   navigation?: any;
@@ -28,10 +29,7 @@ const renderOrders = <FlatList
         return (
             <View style={styles.orders}>
                 <View>
-                  <Image
-                    source={require('../../assets/images/orders.png')}
-                    style={styles.orderIcon}
-                  />
+                <Icons size={40} icon={IconType.INFORMATION} color={theme.primary} />
                 </View>
                 <View style={{marginLeft: -theme.screenWidth * 0.08}}>
                   <Text style={{color: theme.black, fontSize: 18, fontWeight: '600'}}>Level {item.level}</Text>
@@ -61,10 +59,7 @@ const OrderScreen: FC<Props> = ({navigation}) => {
               <Avatar/>
             </TouchableOpacity>
             <Text style={styles.headerText}>Order</Text>
-            <Image
-              source={require('../../resources/icons/notification-bell.png')}
-              style={styles.notification}
-            />
+            <Icons size={40} icon={IconType.NOTIFICATION} color={theme.black} />
           </View>          
         </View>
         <View style={{paddingBottom: theme.screenHeight * 0.4}}>
