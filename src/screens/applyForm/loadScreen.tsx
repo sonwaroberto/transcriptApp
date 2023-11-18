@@ -19,8 +19,16 @@ const LoadScreen: FC<Props> = ({ navigation }) => {
       );
     }, 500); 
 
-    return () => clearInterval(loadingAnimation);
-  }, []);
+     const timeout = setTimeout(() => {
+      clearInterval(loadingAnimation);
+      navigation.replace('sucessscreen'); 
+    }, 10000);
+
+    return () => {
+      clearInterval(loadingAnimation);
+      clearTimeout(timeout);
+    };
+  }, [navigation]); 
 
   return (
     <View style={styles.container}>

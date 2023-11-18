@@ -5,14 +5,16 @@ import { View, Text } from 'react-native';
 import LottieView from 'lottie-react-native';
 import styles from './applyForm.style';
 
+
+
 const SuccessScreen = () => {
   return (
     <View style={styles.successContainer}>
       {/* Fireworks Animation */}
       <LottieView
-        source={require('./path/to/fireworks.json')} // Replace with the actual path
+        source={require('../../components/animation/fireworks.json')}
         autoPlay
-        loop={false}
+        loop={true}
         style={styles.fireworksAnimation}
       />
 

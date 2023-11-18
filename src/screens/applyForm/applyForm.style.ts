@@ -60,9 +60,18 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       marginLeft: 10, 
     },
+    selectedRadioButton: {
+      backgroundColor: '#2372E9',
+    },
     radioText: {
       marginLeft: 10, 
       color: '#2372E9',
+    },
+    radioButtonText: {
+      color: '#2372E9',
+    },
+    selectedText: {
+      color: 'white', 
     },
   
     submitButton: {

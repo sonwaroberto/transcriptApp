@@ -1,15 +1,14 @@
-import React, {FC, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-// import Icon from 'react-native-vector-icons/Ionicons';
+// ApplyForm.js
+import React, { FC, useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import styles from './applyForm.style';
 
 type Props = {
-    navigation: any;
-  };
-  
+  navigation: any;
+};
 
-const ApplyForm: FC<Props> = ({navigation}) => {
+const ApplyForm: FC<Props> = ({ navigation }) => {
   const [name, setName] = useState('');
   const [matricule, setMatricule] = useState('');
   const [copies, setCopies] = useState('');
@@ -17,6 +16,16 @@ const ApplyForm: FC<Props> = ({navigation}) => {
   const [type, setType] = useState('');
   const [amount, setAmount] = useState('');
   const [number, setNumber] = useState('');
+  const [calculatedAmount, setCalculatedAmount] = useState('');
+
+  // Calculate the values based on 'enroll'
+  const calculateValues = (baseValue: number) => {
+    if (enroll === 'no') {
+      return baseValue + 1000;
+    } else {
+      return baseValue;
+    }
+  };
 
   const handleSubmit = () => {
     // Handle form submission logic here
@@ -29,9 +38,27 @@ const ApplyForm: FC<Props> = ({navigation}) => {
     console.log('Payer Phone Number:', number);
   };
 
+  // Update calculated amount when the application type changes
+  React.useEffect(() => {
+    // Calculate the amount based on the selected application type
+    switch (type) {
+      case 'sfm':
+        setCalculatedAmount(calculateValues(3000).toString());
+        break;
+      case 'fm':
+        setCalculatedAmount(calculateValues(2000).toString());
+        break;
+      case 'nm':
+        setCalculatedAmount(calculateValues(1000).toString());
+        break;
+      default:
+        setCalculatedAmount('');
+        break;
+    }
+  }, [type]);
+
   return (
     <View style={styles.container}>
-
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => console.log('Back button pressed')}>
@@ -40,11 +67,10 @@ const ApplyForm: FC<Props> = ({navigation}) => {
         <TouchableOpacity onPress={() => console.log('Back button pressed')}>
           {/* <Icon name="arrow-back" size={30} color="black" /> */}
         </TouchableOpacity>
-        
       </View>
 
       {/* Form */}
-      <View style={styles.formContainer}>
+      <View style={[styles.formContainer, { backgroundColor: 'white' }]}>
         {/* Name */}
         <Text style={styles.label}>Applicant Name:</Text>
         <TextInput
@@ -75,55 +101,70 @@ const ApplyForm: FC<Props> = ({navigation}) => {
         {/* Enrolled */}
         <Text style={styles.label}>Enrolled:</Text>
         <View style={styles.genderContainer}>
-          <Text style={styles.radioText}>100</Text>
           <TouchableOpacity
-            style={styles.radioButton}
+            style={[
+              styles.radioButton,
+              enroll === 'yes' && styles.selectedRadioButton,
+            ]}
             onPress={() => setEnroll('yes')}
           >
-            <Text>Yes</Text>
+            <Text style={[styles.radioButtonText, enroll === 'yes' && styles.selectedText]}>Yes</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.radioButton}
+            style={[
+              styles.radioButton,
+              enroll === 'no' && styles.selectedRadioButton,
+            ]}
             onPress={() => setEnroll('no')}
           >
-            <Text>No</Text>
+            <Text style={[styles.radioButtonText, enroll === 'no' && styles.selectedText]}>No</Text>
           </TouchableOpacity>
         </View>
 
         {/* Type */}
         <Text style={styles.label}>Application Type:</Text>
         <View style={styles.genderContainer}>
-        <Text style={styles.radioText}>100</Text>
+          <Text style={styles.radioText}>{calculateValues(3000)}</Text>
           <TouchableOpacity
-            style={styles.radioButton}
+            style={[
+              styles.radioButton,
+              type === 'sfm' && styles.selectedRadioButton,
+            ]}
             onPress={() => setType('sfm')}
           >
-            <Text>SFM</Text>
+            <Text style={[styles.radioButtonText, type === 'sfm' && styles.selectedText]}>SFM</Text>
           </TouchableOpacity>
 
+          <Text style={styles.radioText}>{calculateValues(2000)}</Text>
           <TouchableOpacity
-            style={styles.radioButton}
+            style={[
+              styles.radioButton,
+              type === 'fm' && styles.selectedRadioButton,
+            ]}
             onPress={() => setType('fm')}
           >
-            <Text>FM</Text>
+            <Text style={[styles.radioButtonText, type === 'fm' && styles.selectedText]}>FM</Text>
           </TouchableOpacity>
 
+          <Text style={styles.radioText}>{calculateValues(1000)}</Text>
           <TouchableOpacity
-            style={styles.radioButton}
+            style={[
+              styles.radioButton,
+              type === 'nm' && styles.selectedRadioButton,
+            ]}
             onPress={() => setType('nm')}
           >
-            <Text>NM</Text>
+            <Text style={[styles.radioButtonText, type === 'nm' && styles.selectedText]}>NM</Text>
           </TouchableOpacity>
         </View>
 
-        {/* Amount */}
-        <Text style={styles.label}>Amount:</Text>
+        {/* Calculated Amount */}
+        <Text style={styles.label}>Calculated Amount:</Text>
         <TextInput
-          style={styles.input}
-          placeholder="Enter The Amount:"
-          value={amount}
-          onChangeText={(text) => setAmount(text)}
+          style={[styles.input, { color: 'black', backgroundColor: 'white' }]}
+          editable={false}
+          value={calculatedAmount}
         />
 
         {/* Number */}
@@ -136,7 +177,7 @@ const ApplyForm: FC<Props> = ({navigation}) => {
         />
 
         {/* Submit Button */}
-        <TouchableOpacity style={styles.submitButton} onPress={() => navigation.navigate('sucessscreen')}>
+        <TouchableOpacity style={styles.submitButton} onPress={() => navigation.navigate('loadscreen')}>
           <Text style={{ color: 'white' }}>Apply</Text>
         </TouchableOpacity>
       </View>
