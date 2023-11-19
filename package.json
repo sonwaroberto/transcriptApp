@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/material-bottom-tabs": "^6.2.15",
     "@react-navigation/native": "^6.1.9",
@@ -18,6 +19,7 @@
     "@reduxjs/toolkit": "^1.9.7",
     "@types/react-native-onboarding-swiper": "^1.1.4",
     "formik": "^2.2.9",
+    "lottie-react-native": "^6.4.1",
     "moment": "^2.29.1",
     "react": "18.2.0",
     "react-native": "0.72.6",

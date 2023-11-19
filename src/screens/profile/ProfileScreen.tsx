@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
-import {SafeAreaView, View, Text, Image, TouchableOpacity, FlatList} from 'react-native';
+import {SafeAreaView, View, Text, TouchableOpacity} from 'react-native';
 import styles from './profile.style';
-import { Formik } from 'formik';
+import {Formik} from 'formik';
 import theme from '../../resources/theme';
 import CustomTextInput from '../../components/input/input';
-import Icons, { IconType } from '../../components/icon/icons.component';
+import Icons, {IconType} from '../../components/icon/icons.component';
 import Button from '../../components/button/button';
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 
 const update = () => {
   // Update Api
-  console.log("Account upadated")
+  console.log('Account upadated');
 };
 
 type InitialValuesInput = {
@@ -41,7 +41,6 @@ const handleSignIn = async (values: InitialValuesInput) => {
 const renderForm = ({
   handleChange,
   handleBlur,
-  handleSubmit,
   values,
   errors,
   isValid,
@@ -53,7 +52,9 @@ const renderForm = ({
     />
     <CustomTextInput
       placeholder="Matricule"
-      icon={<Icons size={20} icon={IconType.IDENTIFICATION} color={theme.gray} />}
+      icon={
+        <Icons size={20} icon={IconType.IDENTIFICATION} color={theme.gray} />
+      }
     />
     <CustomTextInput
       placeholder="Department"
@@ -72,14 +73,16 @@ const renderForm = ({
       secure={true}
       icon={<Icons size={20} icon={IconType.LOCK} color={theme.gray} />}
     />
-    {<View style={styles.buttonWrapper}>
-      <Button
-        disabled={!isValid}
-        // loading={loading}
-        btnText="Save"
-        onPress={update}
-      />
-    </View>}
+    {
+      <View style={styles.buttonWrapper}>
+        <Button
+          disabled={!isValid}
+          // loading={loading}
+          btnText="Save"
+          onPress={update}
+        />
+      </View>
+    }
   </View>
 );
 
@@ -88,19 +91,19 @@ const ProfileScreen: FC<Props> = ({navigation}) => {
     <SafeAreaView style={styles.safeContainer}>
       <View style={styles.container}>
         <View style={styles.header}>
-            <TouchableOpacity onPress={() => navigation.goBack()} style={{left: theme.screenWidth * 0.02}}>
-              <Icons size={20} icon={IconType.ARROW_LEFT} color={theme.white} />
-            </TouchableOpacity>          
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={{left: theme.screenWidth * 0.02}}>
+            <Icons size={20} icon={IconType.ARROW_LEFT} color={theme.white} />
+          </TouchableOpacity>
         </View>
         <View style={styles.avatar}>
           <Text style={styles.username}>NE</Text>
         </View>
         <View style={styles.formContainer}>
-            <Formik
-              initialValues={initialValuesInput}
-              onSubmit={handleSignIn}>
-              {renderForm}
-            </Formik>
+          <Formik initialValues={initialValuesInput} onSubmit={handleSignIn}>
+            {renderForm}
+          </Formik>
         </View>
       </View>
     </SafeAreaView>
