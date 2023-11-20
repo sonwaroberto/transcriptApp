@@ -32,7 +32,7 @@ const LoadScreen: FC<Props> = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color={'blue'} />
+      <ActivityIndicator size={100} color={'blue'} />
 
       <Text style={styles.loadingText}>{loadingText}</Text>
     </View>

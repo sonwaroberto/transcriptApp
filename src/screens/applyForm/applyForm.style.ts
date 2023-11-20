@@ -10,16 +10,23 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: '#f2f2f2',
     },
+    headerWrapper: {
+      flexDirection: 'row',
+      marginBottom: 30,
+    },
+    headerIcon: {
+      right: 60,
+    },
     header: {
       flexDirection: 'row',
       alignItems: 'center',
-      paddingHorizontal: 20,
-      paddingTop: 20,
+      // paddingHorizontal: 20,
+      // paddingTop: 20,
     },
     headerTitle: {
       fontSize: 20,
       fontWeight: 'bold',
-      color: 'black',
+      color: '#2372E9',
       marginLeft: 10,
     },
     headerLine: {
@@ -27,6 +34,7 @@ const styles = StyleSheet.create({
       height: 1,
       backgroundColor: '#2372E9',
       marginHorizontal: 10,
+      marginTop: 10,
     },
     formContainer: {
       width: 400,
@@ -36,6 +44,11 @@ const styles = StyleSheet.create({
     },
     label: {
       marginBottom: 8,
+      fontWeight: 'bold',
+      fontSize: theme.fontSizeSmall,
+      marginLeft: 8,
+      color: '#7f8c9f',
+      paddingBottom: 5,
     },
     input: {
       borderRadius: 5,
@@ -50,6 +63,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',     
       marginBottom: 16,
+      
     },
     radioButton: {
       flex: 1, // each button takes equal space
@@ -57,7 +71,7 @@ const styles = StyleSheet.create({
       padding: 8,
       backgroundColor: 'white',
       borderColor: '#2372E9',
-      borderWidth: 1,
+      borderWidth: 2,
       marginLeft: 10, 
     },
     selectedRadioButton: {
@@ -66,6 +80,8 @@ const styles = StyleSheet.create({
     radioText: {
       marginLeft: 10, 
       color: '#2372E9',
+      fontWeight: 'bold',
+      fontSize: theme.fontSizeSmall,
     },
     radioButtonText: {
       color: '#2372E9',
@@ -76,12 +92,14 @@ const styles = StyleSheet.create({
   
     submitButton: {
       backgroundColor: '#2372E9',
-      borderRadius: 5,
+      borderRadius: 10,
       padding: 10,
       alignItems: 'center',
       justifyContent: 'center',
       borderColor: '#2372E9',  
-      borderWidth: 1,        
+      borderWidth: 1,
+      marginTop: 15,
+      marginBottom: 50,       
     },
     
     // *** Load Screen Styles *** //
@@ -107,8 +125,8 @@ const styles = StyleSheet.create({
       backgroundColor: '#f2f2f2',
     },
     fireworksAnimation: {
-      width: 200,
-      height: 200,
+      width: 400,
+      height: 400,
     },
     successText: {
       marginTop: 20,
