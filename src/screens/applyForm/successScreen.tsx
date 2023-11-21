@@ -15,7 +15,7 @@ const SuccessScreen = () => {
         style={styles.fireworksAnimation}
       />
 
-      <Text style={styles.successText}>Successful</Text>
+      <Text style={styles.successText}>Success!!</Text>
     </View>
   );
 };

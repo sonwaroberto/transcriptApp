@@ -3,6 +3,11 @@ import React, {FC, useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 
 import styles from './applyForm.style';
+import CustomTextInput from '../../components/input/input';
+
+import theme from '../../resources/theme';
+import {Icons} from '../../components';
+import {IconType} from '../../components/icon/icons.component';
 
 type Props = {
   navigation: any;
@@ -58,42 +63,45 @@ const ApplyForm: FC<Props> = ({navigation}) => {
   }, [calculateValues, type]);
 
   return (
-    <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => console.log('Back button pressed')}>
-          <Text style={styles.headerTitle}>Application Form</Text>
+    <View style={[styles.container, {backgroundColor: 'white'}]}>  
+    
+    <View style={styles.headerWrapper}>
+      <View style={styles.headerIcon}>
+        <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
+          <Icons size={30} icon={IconType.ARROW_LEFT} color='#2372E9' />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => console.log('Back button pressed')}></TouchableOpacity>
       </View>
+      <View style={styles.header}>
+          <Text style={styles.headerTitle}>Application Form</Text>
+          <View style={styles.headerLine} />
+      </View>
+    </View>
 
       <View style={[styles.formContainer, {backgroundColor: 'white'}]}>
-        <Text style={styles.label}>Applicant Name:</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your name:"
-          value={name}
-          onChangeText={text => setName(text)}
-        />
 
-        <Text style={styles.label}>Applicant Matricule:</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your matricule:"
-          value={matricule}
-          onChangeText={text => setMatricule(text)}
-        />
+      <CustomTextInput
+        placeholder="Applicant Full Name"
+        value={name}
+        onChangeText={text => setName(text)}
+        icon={<Icons size={20} icon={IconType.USER} color={theme.gray} />}
+      />
 
-        <Text style={styles.label}>Amount of Copies:</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Amount of Copies:"
-          value={copies}
-          onChangeText={text => setCopies(text)}
-        />
+      <CustomTextInput
+        placeholder="Enter your matricule"
+        value={matricule}
+        onChangeText={text => setMatricule(text)}
+        icon={<Icons size={20} icon={IconType.LOCK} color={theme.gray} />}
+      />
 
-        <Text style={styles.label}>Enrolled:</Text>
+      <CustomTextInput
+        placeholder="Number of Copies"
+        value={copies}
+        onChangeText={text => setCopies(text)}
+        icon={<Icons size={20} icon={IconType.PENCIL} color={theme.gray} />}
+      />
+
+      
+      <Text style={styles.label}>Enrolled:</Text>
         <View style={styles.genderContainer}>
           <TouchableOpacity
             style={[
@@ -126,6 +134,7 @@ const ApplyForm: FC<Props> = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
+       
         <Text style={styles.label}>Application Type:</Text>
         <View style={styles.genderContainer}>
           <Text style={styles.radioText}>{calculateValues(3000)}</Text>
@@ -177,27 +186,31 @@ const ApplyForm: FC<Props> = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.label}>Calculated Amount:</Text>
-        <TextInput
-          style={[styles.input, {color: 'black', backgroundColor: 'white'}]}
-          editable={false}
-          value={calculatedAmount}
+        <CustomTextInput
+        placeholder="Amount Payable"
+        value={calculatedAmount}
+        onChangeText={text => setCalculatedAmount(text)}
+        icon={<Icons size={20} icon={IconType.TRANSACTION_HISTORY} color={theme.gray} />}
+        editable={false}
         />
 
-        <Text style={styles.label}>Payer Phone Number:</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Payer Number:"
+        <CustomTextInput
+          placeholder="Payer Phone Number"
           value={number}
           onChangeText={text => setNumber(text)}
+          icon={<Icons size={20} icon={IconType.PHONE_MSG} color={theme.gray} />}
         />
+
+       
 
         <TouchableOpacity
           style={styles.submitButton}
-          onPress={() => navigation.navigate('loadscreen')}>
+          onPress={() => navigation.navigate('paymentmethod')}>
           <Text style={{color: 'white'}}>Apply</Text>
         </TouchableOpacity>
       </View>
+
+      
     </View>
   );
 };
