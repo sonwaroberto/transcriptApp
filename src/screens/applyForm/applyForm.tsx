@@ -1,6 +1,5 @@
-// ApplyForm.js
 import React, {FC, useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, Alert , TouchableOpacity} from 'react-native';
 
 import styles from './applyForm.style';
 import CustomTextInput from '../../components/input/input';
@@ -23,6 +22,55 @@ const ApplyForm: FC<Props> = ({navigation}) => {
   const [number, setNumber] = useState('');
   const [calculatedAmount, setCalculatedAmount] = useState('');
 
+   // Validation functions
+   const isValidName = (input: string): boolean => {
+    if (input.trim() === '') {
+      Alert.alert('Invalid Name', 'Name cannot be empty.');
+      return false;
+    }
+    return true;
+  };
+
+  const isValidMatricule = (input: string): boolean => {
+    if (input.trim() === '') {
+      Alert.alert('Invalid Matricule', 'Matricule cannot be empty.');
+      return false;
+    }
+    return true;
+  };
+
+  const isValidCopies = (input: string): boolean => {
+    const isNumeric = /^\d+$/.test(input);
+    if (!isNumeric) {
+      Alert.alert('Invalid Copies', 'Copies must contain only numeric characters.');
+      return false;
+    }
+    return true;
+  };
+
+  const isValidPhoneNumber = (input: string): boolean => {
+    const isNumeric = /^\d+$/.test(input);
+    const startsWith6 = input.startsWith('6');
+    const hasValidLength = input.length >= 9;
+
+    if (!isNumeric) {
+      Alert.alert('Invalid Phone Number', 'Phone number must contain only numeric characters.');
+      return false;
+    }
+
+    if (!startsWith6) {
+      Alert.alert('Invalid Phone Number', 'Phone number must start with the digit 6.');
+      return false;
+    }
+
+    if (!hasValidLength) {
+      Alert.alert('Invalid Phone Number', 'Phone number must be at least 9 digits long.');
+      return false;
+    }
+
+    return true;
+  };
+
   // Calculate the values based on 'enroll'
   const calculateValues = (baseValue: number) => {
     if (enroll === 'no') {
@@ -33,34 +81,49 @@ const ApplyForm: FC<Props> = ({navigation}) => {
   };
 
   const handleSubmit = () => {
-    // Handle form submission logic here
-    console.log('Applicant Name:', name);
-    console.log('Applicant Matricule:', matricule);
-    console.log('Amount of Copies:', copies);
-    console.log('Enrolled:', enroll);
-    console.log('Application Type:', type);
-    console.log('Amount:', amount);
-    console.log('Payer Phone Number:', number);
+    if (
+      isValidName(name) &&
+      isValidMatricule(matricule) &&
+      isValidCopies(copies) &&
+      isValidPhoneNumber(number)
+    ) {
+      navigation.navigate('paymentmethod');
+      console.log('Applicant Name:', name);
+      console.log('Applicant Matricule:', matricule);
+      console.log('Amount of Copies:', copies);
+      console.log('Enrolled:', enroll);
+      console.log('Application Type:', type);
+      console.log('Amount:', amount);
+      console.log('Payer Phone Number:', number);
+    } else {
+      console.log('Invalid Information')
+    }
   };
 
-  // Update calculated amount when the application type changes
   React.useEffect(() => {
-    // Calculate the amount based on the selected application type
+    // Calculate amount based on the selected application type
     switch (type) {
       case 'sfm':
         setCalculatedAmount(calculateValues(3000).toString());
+        setAdditionalText('Super Fast Mode 24 Hours Delivery');
         break;
       case 'fm':
         setCalculatedAmount(calculateValues(2000).toString());
+        setAdditionalText('Fast Mode - 2 Days Delivery');
         break;
       case 'nm':
         setCalculatedAmount(calculateValues(1000).toString());
+        setAdditionalText('Normal Mode - 1 Week Delivery');
         break;
       default:
         setCalculatedAmount('');
+        setAdditionalText('');
         break;
     }
   }, [calculateValues, type]);
+
+  const [additionalText, setAdditionalText] = useState('');
+
 
   return (
     <View style={[styles.container, {backgroundColor: 'white'}]}>  
@@ -98,6 +161,7 @@ const ApplyForm: FC<Props> = ({navigation}) => {
         value={copies}
         onChangeText={text => setCopies(text)}
         icon={<Icons size={20} icon={IconType.PENCIL} color={theme.gray} />}
+        keyboardType='numeric'
       />
 
       
@@ -185,6 +249,8 @@ const ApplyForm: FC<Props> = ({navigation}) => {
             </Text>
           </TouchableOpacity>
         </View>
+        <Text style={styles.additionalText}>{additionalText}</Text>
+
 
         <CustomTextInput
         placeholder="Amount Payable"
@@ -205,7 +271,7 @@ const ApplyForm: FC<Props> = ({navigation}) => {
 
         <TouchableOpacity
           style={styles.submitButton}
-          onPress={() => navigation.navigate('paymentmethod')}>
+          onPress={handleSubmit}>
           <Text style={{color: 'white'}}>Apply</Text>
         </TouchableOpacity>
       </View>

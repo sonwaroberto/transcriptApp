@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 15,
   },
+
 });
 
 export default styles;

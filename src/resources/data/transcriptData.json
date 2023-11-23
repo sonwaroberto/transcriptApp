@@ -1,0 +1,30 @@
+[
+    [
+      { "id": "1", "code": "COURSE CODE", "title": "ENG101" },
+      { "id": "2", "code": "COURSE TITLE", "title": "USE OF ENGLISH" },
+      { "id": "3", "code": "CREDIT VALUE", "title": "2" },
+      { "id": "4", "code": "CA MARK", "title": "20" },
+      { "id": "5", "code": "EXAM MARK", "title": "40" },
+      { "id": "6", "code": "FINAL MARK", "title": "60" },
+      { "id": "7", "code": "GRADE", "title": "B" }
+    ],
+    [
+      { "id": "1", "code": "COURSE CODE", "title": "MATH201" },
+      { "id": "2", "code": "COURSE TITLE", "title": "CALCULUS I" },
+      { "id": "3", "code": "CREDIT VALUE", "title": "3" },
+      { "id": "4", "code": "CA MARK", "title": "18" },
+      { "id": "5", "code": "EXAM MARK", "title": "45" },
+      { "id": "6", "code": "FINAL MARK", "title": "63" },
+      { "id": "7", "code": "GRADE", "title": "A-" }
+    ],
+    [
+      { "id": "1", "code": "COURSE CODE", "title": "PHY301" },
+      { "id": "2", "code": "COURSE TITLE", "title": "MODERN PHYSICS" },
+      { "id": "3", "code": "CREDIT VALUE", "title": "4" },
+      { "id": "4", "code": "CA MARK", "title": "22" },
+      { "id": "5", "code": "EXAM MARK", "title": "38" },
+      { "id": "6", "code": "FINAL MARK", "title": "60" },
+      { "id": "7", "code": "GRADE", "title": "B" }
+    ]
+  ]
+  
