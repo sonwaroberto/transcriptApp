@@ -6,11 +6,13 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
+  ScrollView,
 } from 'react-native';
 import styles from './dashboard.style';
 import Avatar from '../../components/avatar/Avatar';
 import theme from '../../resources/theme';
 import Icons, {IconType} from '../../components/icon/icons.component';
+import { screenHeight } from '../../utils/dimensions';
 
 type Props = {
   navigation?: any;
@@ -24,69 +26,68 @@ const appliedTranscript = [
   {id: 5, number: 0o5},
 ];
 
-const renderApplication = (
-  <FlatList
-    keyExtractor={transcript => transcript.id.toString()}
-    data={appliedTranscript}
-    renderItem={({item}) => {
-      return (
-        <View style={styles.transContainer}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              top: theme.screenHeight * 0.025,
-              left: theme.screenWidth * 0.01,
-            }}>
-            <Image
-              source={require('../../resources/icons/summary.png')}
-              style={styles.transcript}
-            />
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 17,
-                left: theme.screenWidth * 0.07,
-              }}>
-              Student Academic Record N-{item.number}
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginHorizontal: 55,
-              top: theme.screenHeight * 0.035,
-              left: theme.screenWidth * 0.01,
-            }}>
-            <TouchableOpacity>
-              <Text
-                style={{
-                  textDecorationLine: 'underline',
-                  fontSize: 16,
-                  color: '#2372E9',
-                }}>
-                View
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Text
-                style={{
-                  textDecorationLine: 'underline',
-                  fontSize: 16,
-                  color: '#2372E9',
-                }}>
-                Download
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      );
-    }}
-  />
-);
-
 const DashboardScreen: FC<Props> = ({navigation}) => {
+  const renderApplication = (
+    <FlatList
+      keyExtractor={transcript => transcript.id.toString()}
+      data={appliedTranscript}
+      renderItem={({item}) => {
+        return (
+          <View style={styles.transContainer}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                top: theme.screenHeight * 0.025,
+                left: theme.screenWidth * 0.01,
+              }}>
+              <Image
+                source={require('../../resources/icons/summary.png')}
+                style={styles.transcript}
+              />
+              <Text
+                style={{
+                  color: '#000',
+                  fontSize: 17,
+                  left: theme.screenWidth * 0.07,
+                }}>
+                Student Academic Record N-{item.number}
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginHorizontal: 55,
+                top: theme.screenHeight * 0.035,
+                left: theme.screenWidth * 0.01,
+              }}>
+              <TouchableOpacity>
+                <Text
+                  style={{
+                    textDecorationLine: 'underline',
+                    fontSize: 16,
+                    color: '#2372E9',
+                  }}>
+                  View
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Transcript')}>
+                <Text
+                  style={{
+                    textDecorationLine: 'underline',
+                    fontSize: 16,
+                    color: '#2372E9',
+                  }}>
+                  Download
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
+      }}
+    />
+  );
   return (
     <SafeAreaView style={styles.safeContainer}>
       <View style={styles.container}>
@@ -148,9 +149,11 @@ const DashboardScreen: FC<Props> = ({navigation}) => {
         </View>
         <View>
           <Text style={{color: '#000', marginVertical: 15}}>History</Text>
-          <>{renderApplication}</>
+          <View style={{paddingBottom: theme.screenHeight * 1, marginBottom: theme.screenHeight * 0.15 }}>
+            {renderApplication}
+          </View>
         </View>
-      </View>
+        </View>
     </SafeAreaView>
   );
 };

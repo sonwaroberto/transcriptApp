@@ -149,7 +149,7 @@ const OrderScreen: FC<Props> = ({navigation}) => {
             <Icons size={40} icon={IconType.NOTIFICATION} color={theme.black} />
           </View>
         </View>
-        <View style={{paddingBottom: theme.screenHeight * 0.4}}>
+        <View style={{paddingBottom: theme.screenHeight * 0.3}}>
           {renderOrders}
         </View>
       </View>
