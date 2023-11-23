@@ -145,8 +145,8 @@ const OrderScreen: FC<Props> = ({navigation}) => {
             <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
               <Avatar />
             </TouchableOpacity>
-            <Text style={styles.headerText}>Order</Text>
-            <Icons size={40} icon={IconType.NOTIFICATION} color={theme.black} />
+            <Text style={styles.headerText}>Orders</Text>
+            <Icons size={30} icon={IconType.NOTIFICATION} color={theme.black} />
           </View>
         </View>
         <View style={{paddingBottom: theme.screenHeight * 0.3}}>
