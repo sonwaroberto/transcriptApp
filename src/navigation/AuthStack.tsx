@@ -15,6 +15,7 @@ import OrderScreen from '../screens/orders/OrderScreen';
 import ProfileScreen from '../screens/profile/ProfileScreen';
 import theme from '../resources/theme';
 import PaymentMethod from '../screens/payment/paymentScreen';
+import ViewTranscript from '../screens/dashboard/viewTranscript';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -78,6 +79,7 @@ const AuthStack: FC = () => {
       <Stack.Screen name="sucessscreen" component={SuccessScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="paymentmethod" component={PaymentMethod} />
+      <Stack.Screen name='viewtranscript' component={ViewTranscript} />
     </Stack.Navigator>
   );
 };

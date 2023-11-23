@@ -59,7 +59,9 @@ const renderApplication = (
               top: theme.screenHeight * 0.035,
               left: theme.screenWidth * 0.01,
             }}>
-            <TouchableOpacity>
+            <TouchableOpacity
+            // onPress={() => navigation.navigate('viewtranscript')}
+            >
               <Text
                 style={{
                   textDecorationLine: 'underline',
