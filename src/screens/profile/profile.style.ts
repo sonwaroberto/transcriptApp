@@ -12,10 +12,12 @@ const styles = StyleSheet.create({
 
   },
   header: {
-    width: theme.screenWidth,
+    width: theme.screenWidth * 0.5,
     height: theme.screenHeight * 0.6,
     backgroundColor: theme.primary,
     paddingTop: theme.screenHeight * 0.04,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   avatar: {
     width: 80,
