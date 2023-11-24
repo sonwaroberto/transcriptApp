@@ -135,9 +135,9 @@ const DashboardScreen: FC<Props> = ({navigation}) => {
                 Computer Engineering
               </Text>
             </View>
-            <View style={{left: theme.screenWidth * 0.08}}>
+            <TouchableOpacity style={{left: theme.screenWidth * 0.08}} onPress={() => navigation.navigate('Notifications')}>
               <Icons size={30} icon={IconType.NOTIFICATION} color={theme.black}/>
-            </View>
+            </TouchableOpacity>
           </View>
           {/* <Icons size={30} icon={IconType.NOTIFICATION} color={theme.black} /> */}
         </View>
