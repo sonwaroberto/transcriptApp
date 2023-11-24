@@ -48,14 +48,14 @@ const styles = StyleSheet.create({
   message: {
     color: theme.black,
     fontSize: 14,
-    top: 5,
-    left: -24,
-    width: theme.screenWidth * 0.28,
+    top: 8,
+    left: -20,
+    width: theme.screenWidth * 0.3,
   },
   date: {
     color: theme.grayLight,
     alignSelf: 'flex-end',
-    top: 8,
+    top: 9,
   },
 });
 

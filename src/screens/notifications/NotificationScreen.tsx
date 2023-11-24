@@ -17,32 +17,32 @@ type Props = {
 const notifications = [
   {
     id: 1,
-    msg: `Your transcript is Ready! Download it now to access your records`,
+    msg: `Hello Neba, Your Payment was successfully received! Download it now to access your records`,
     date: '12/05/2023',
   },
   {
     id: 2,
-    msg: `Your transcript request has been received and is in progress!`,
+    msg: `Hello Neba, Your transcript request has been received and is in progress!`,
     date: '12/05/2023',
   },
   {
     id: 3,
-    msg: 'Payment Successfully Received! Stay tuned for updates ',
+    msg: 'Hello Neba, Your Payment was successfully received! Stay tuned for updates ',
     date: '12/05/2023',
   },
   {
     id: 4,
-    msg: `Your transcript is Ready! Download it now to access your records`,
+    msg: `Hello Neba, Your transcript is Ready! Download it now to access your records`,
     date: '12/10/2023',
   },
   {
     id: 5,
-    msg: `Your transcript request has been received and is in progress!`,
+    msg: `Hello Neba, Your transcript request has been received and is in progress!`,
     date: '12/10/2023',
   },
   {
     id: 6,
-    msg: 'Payment Successfully Received! Stay tuned for updates ',
+    msg: 'Hello Neba, Your Payment was successfully received! Stay tuned for updates ',
     date: '12/10/2023',
   },
 ];
