@@ -3,11 +3,16 @@ import theme from '../../resources/theme';
 
 
 const styles = StyleSheet.create({
+  safeContainer: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
     container: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#f2f2f2',
+      backgroundColor: '#fff',
+      padding: 20,
     },
     headerWrapper: {
       flexDirection: 'row',
@@ -39,15 +44,25 @@ const styles = StyleSheet.create({
       width: 400,
       padding: 20,
       borderRadius: 10,
-      backgroundColor: '#f2f2f2',
+      backgroundColor: '#fff',
     },
     label: {
       marginBottom: 8,
+      marginTop: 6,
       fontWeight: 'bold',
       fontSize: theme.fontSizeSmall,
       marginLeft: 8,
       color: '#7f8c9f',
       paddingBottom: 5,
+    },
+    label2: {
+      marginBottom: 10,
+      marginTop: 10,
+      fontWeight: 'bold',
+      fontSize: theme.fontSizeSmall,
+      marginLeft: 8,
+      color: '#7f8c9f',
+      
     },
     input: {
       borderRadius: 5,
@@ -56,6 +71,27 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       borderColor: '#2372E9',
       borderWidth: 1,
+    },
+    picker: {
+      height: 50,
+      borderWidth: 1,
+      borderColor: theme.whiteShape,
+      borderRadius: 5,
+      marginBottom: 10,
+      paddingHorizontal: 10,
+      backgroundColor: 'white', 
+      color: '#2372E9', 
+    },
+    datePickerInput: {
+      height: 40,
+      color: '#2372E9',
+      borderColor: theme.whiteShape,
+      borderWidth: 2,
+      borderRadius: 10,
+      marginBottom: 10,
+      paddingLeft: 10,
+      justifyContent: 'center',
+      width: 160,
     },
     genderContainer: {
       flexDirection: 'row',
