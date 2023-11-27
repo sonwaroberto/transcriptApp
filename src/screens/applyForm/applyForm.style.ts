@@ -1,6 +1,5 @@
-import {StyleSheet, TextStyle} from 'react-native';
+import {StyleSheet} from 'react-native';
 import theme from '../../resources/theme';
-import Icons, {IconType} from '../../components/icon/icons.component';
 
 
 const styles = StyleSheet.create({
@@ -63,7 +62,6 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',     
       marginBottom: 16,
-      
     },
     radioButton: {
       flex: 1, // each button takes equal space
@@ -89,7 +87,16 @@ const styles = StyleSheet.create({
     selectedText: {
       color: 'white', 
     },
-  
+    radioButtonContainer: {
+      flexDirection: 'column',
+      marginBottom: 10,
+    },
+    additionalText: {
+      marginTop: 5,
+      alignSelf: 'center',
+      color: 'gray',
+      fontSize: theme.fontSizeSmall,
+    },
     submitButton: {
       backgroundColor: '#2372E9',
       borderRadius: 10,

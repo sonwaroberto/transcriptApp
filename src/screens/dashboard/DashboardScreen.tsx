@@ -41,68 +41,71 @@ const appliedTranscript = [
   {id: 5, number: 0o5},
 ];
 
-const DashboardScreen: FC<Props> = ({navigation}) => {
-  const renderApplication = (
-    <FlatList
-      keyExtractor={transcript => transcript.id.toString()}
-      data={appliedTranscript}
-      renderItem={({item}) => {
-        return (
-          <View style={styles.transContainer}>
-            <View
+const renderApplication = (
+  <FlatList
+    keyExtractor={transcript => transcript.id.toString()}
+    data={appliedTranscript}
+    renderItem={({item}) => {
+      return (
+        <View style={styles.transContainer}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              top: theme.screenHeight * 0.025,
+              left: theme.screenWidth * 0.01,
+            }}>
+            <Image
+              source={require('../../resources/icons/summary.png')}
+              style={styles.transcript}
+            />
+            <Text
               style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                top: theme.screenHeight * 0.025,
-                left: theme.screenWidth * 0.01,
+                color: '#000',
+                fontSize: 17,
+                left: theme.screenWidth * 0.07,
               }}>
-              <Image
-                source={require('../../resources/icons/summary.png')}
-                style={styles.transcript}
-              />
+              Student Academic Record N-{item.number}
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginHorizontal: 55,
+              top: theme.screenHeight * 0.035,
+              left: theme.screenWidth * 0.01,
+            }}>
+            <TouchableOpacity
+            // onPress={() => navigation.navigate('viewtranscript')}
+            >
               <Text
                 style={{
-                  color: '#000',
-                  fontSize: 17,
-                  left: theme.screenWidth * 0.07,
+                  textDecorationLine: 'underline',
+                  fontSize: 16,
+                  color: '#2372E9',
                 }}>
-                Student Academic Record N-{item.number}
+                View
               </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginHorizontal: 55,
-                top: theme.screenHeight * 0.035,
-                left: theme.screenWidth * 0.01,
-              }}>
-              <TouchableOpacity>
-                <Text
-                  style={{
-                    textDecorationLine: 'underline',
-                    fontSize: 16,
-                    color: '#2372E9',
-                  }}>
-                  View
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={createPDF}>
-                <Text
-                  style={{
-                    textDecorationLine: 'underline',
-                    fontSize: 16,
-                    color: '#2372E9',
-                  }}>
-                  Download
-                </Text>
-              </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text
+                style={{
+                  textDecorationLine: 'underline',
+                  fontSize: 16,
+                  color: '#2372E9',
+                }}>
+                Download
+              </Text>
+            </TouchableOpacity>
           </View>
-        );
-      }}
-    />
-  );
+        </View>
+      );
+    }}
+  />
+);
+
+const DashboardScreen: FC<Props> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.safeContainer}>
       <View style={styles.container}>
