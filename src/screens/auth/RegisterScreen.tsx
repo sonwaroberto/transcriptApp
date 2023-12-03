@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -11,44 +11,74 @@ import {Formik} from 'formik';
 import Button from '../../components/button/button';
 import CustomTextInput from '../../components/input/input';
 import signUpValidationSchema from '../../schema/register';
-// import {useDispatch, useSelector} from 'react-redux';
-// import {RootState} from '../../redux/store';
-// import {registerFunc} from '../../redux/slices/user';
 import {RegisterDataType} from '../../interface/auth/AuthTypes';
-// import {alertMessage} from '../../utils/alert';
 import {Icons} from '../../components';
 import {IconType} from '../../components/icon/icons.component';
 import theme from '../../resources/theme';
-// import {AnyAction} from 'redux';
+import {useAppDispatch, useAppSelector} from '../../redux/typings';
+import {RootState} from '../../redux/store';
+import Notifications, {
+  NotificationType,
+} from '../../components/notification/notification.component';
+import {registerFunc} from '../../redux/auth/thunk/auth.thunk';
+import {AnyAction} from 'redux';
 
 type Props = {
   navigation: any;
 };
 const initialValuesInput: RegisterDataType = {
   fullName: '',
-  phoneNumber: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
+  phoneNumber: '+237654194160',
+  email: 'test@gmail.com',
+  password: '1robertoA#',
+  confirmPassword: '1robertoA#',
+  matricule: '',
 };
 
 const RegisterScreen: FC<Props> = ({navigation}) => {
-  // const dispatch = useDispatch();
-  // const {loading, isError, user, errorMessage, isSuccess} = useSelector(
-  //   (state: RootState) => state.users,
-  // );
+  const loginState = useAppSelector((state: RootState) => state.authSlice);
+  const dispatch = useAppDispatch();
+  const [submitted, setSubmitted] = useState<boolean>(false);
+
+  const [notify, setNotify] = useState<boolean>(false);
+  const [details, setDetails] = useState({
+    type: NotificationType.DEFAULT,
+    message: 'password error',
+  });
 
   const handleSignUp = async (values: RegisterDataType) => {
     console.log('mein values', values);
-    navigation.navigate('Login');
-    // dispatch(registerFunc(values) as unknown as AnyAction);
+    setSubmitted(true);
+    dispatch(registerFunc(values) as unknown as AnyAction);
   };
 
-  // useEffect(() => {
-  //   if (isSuccess && user) {
-  //     navigation.navigate('Dashboard');
-  //   }
-  // }, [dispatch, isSuccess, navigation, user]);
+  useEffect(() => {
+    if (loginState.isSuccess && loginState.user?.id) {
+      console.log('login state', loginState.user);
+      navigation.navigate('Dashboard');
+    }
+  }, [dispatch, loginState, navigation]);
+
+  useEffect(() => {
+    if (submitted) {
+      if (loginState.isError) {
+        setNotify(true);
+        setDetails({
+          type: NotificationType.DANGER,
+          message: loginState.message,
+        });
+        setSubmitted(false);
+      }
+      if (loginState.isSuccess) {
+        setNotify(true);
+        setDetails({
+          type: NotificationType.SUCCESS,
+          message: 'successfully login',
+        });
+        setSubmitted(false);
+      }
+    }
+  }, [loginState, submitted]);
 
   const renderForm = ({
     handleChange,
@@ -61,6 +91,16 @@ const RegisterScreen: FC<Props> = ({navigation}) => {
     <>
       <CustomTextInput
         placeholder="Matriculation Number"
+        onChangeText={handleChange('matricule')}
+        onBlur={handleBlur('matricule')}
+        value={values.matricule}
+        error={errors.matricule}
+        icon={
+          <Icons size={20} icon={IconType.IDENTIFICATION} color={theme.gray} />
+        }
+      />
+      <CustomTextInput
+        placeholder="Full Name"
         onChangeText={handleChange('fullName')}
         onBlur={handleBlur('fullName')}
         value={values.fullName}
@@ -145,6 +185,14 @@ const RegisterScreen: FC<Props> = ({navigation}) => {
           </View>
         </View>
       </ScrollView>
+      {notify && (
+        <Notifications
+          show={notify}
+          setShow={setNotify}
+          type={details.type}
+          message={details.message}
+        />
+      )}
     </SafeAreaView>
   );
 };

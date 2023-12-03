@@ -2,7 +2,8 @@ export interface EmailDataType {
   email: string;
 }
 
-export interface LoginDataType extends EmailDataType {
+export interface LoginDataType {
+  matricule: string;
   password: string;
 }
 
@@ -13,4 +14,5 @@ export interface RegisterDataType extends LoginDataType {
   fullName: string;
   phoneNumber: string;
   confirmPassword: string;
+  email: string;
 }

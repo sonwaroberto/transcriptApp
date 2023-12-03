@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const loginValidationSchema = yup.object().shape({
-  email: yup
+  matricule: yup
     .string()
     .min(5, 'Matricule number must be at least 5 characters')
     .required('Matricule number is Required'),

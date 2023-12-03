@@ -110,22 +110,32 @@ const renderOrders = (
             <Text style={{color: theme.grayLight}}>{item.date}</Text>
           </View>
           {item.status == 'pending' ? (
-            <View>
-              <Text
-                style={[
-                  styles.status,
-                  {backgroundColor: theme.grayLight, color: theme.white},
-                ]}>
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: theme.grayLight,
+                width: 100,
+                minHeight: 50,
+                borderRadius: 4,
+              }}>
+              <Text style={[styles.status, {color: theme.white}]}>
                 {item.status}
               </Text>
             </View>
           ) : (
-            <View>
-              <Text
-                style={[
-                  styles.status,
-                  {backgroundColor: theme.primary, color: theme.white},
-                ]}>
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: theme.primary,
+                width: 100,
+                minHeight: 50,
+                borderRadius: 4,
+              }}>
+              <Text style={[styles.status, {color: theme.white}]}>
                 {item.status}
               </Text>
             </View>

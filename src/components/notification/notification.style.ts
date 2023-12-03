@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
   mainContainer: {
     position: 'absolute',
     // borderRadius: 10,
-    paddingVertical: 10,
+    paddingVertical: 30,
+    top: 60,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

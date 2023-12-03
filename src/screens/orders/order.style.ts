@@ -40,12 +40,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#DFDFDF',
     paddingTop: theme.screenHeight * 0.03,
-    paddingBottom: theme.screenHeight * 0.05
+    paddingBottom: theme.screenHeight * 0.05,
   },
   status: {
     textTransform: 'uppercase',
-    width: 100,
-    height: 30,
     textAlign: 'center',
     textAlignVertical: 'center',
     borderRadius: 20,

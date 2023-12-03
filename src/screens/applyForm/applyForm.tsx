@@ -63,45 +63,42 @@ const ApplyForm: FC<Props> = ({navigation}) => {
   }, [calculateValues, type]);
 
   return (
-    <View style={[styles.container, {backgroundColor: 'white'}]}>  
-    
-    <View style={styles.headerWrapper}>
-      <View style={styles.headerIcon}>
-        <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
-          <Icons size={30} icon={IconType.ARROW_LEFT} color='#2372E9' />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.header}>
+    <View style={[styles.container, {backgroundColor: 'white'}]}>
+      <View style={styles.headerWrapper}>
+        <View style={styles.headerIcon}>
+          <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
+            <Icons size={30} icon={IconType.ARROW_LEFT} color="#2372E9" />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.header}>
           <Text style={styles.headerTitle}>Application Form</Text>
           <View style={styles.headerLine} />
+        </View>
       </View>
-    </View>
 
       <View style={[styles.formContainer, {backgroundColor: 'white'}]}>
+        <CustomTextInput
+          placeholder="Applicant Full Name"
+          value={name}
+          onChangeText={text => setName(text)}
+          icon={<Icons size={20} icon={IconType.USER} color={theme.gray} />}
+        />
 
-      <CustomTextInput
-        placeholder="Applicant Full Name"
-        value={name}
-        onChangeText={text => setName(text)}
-        icon={<Icons size={20} icon={IconType.USER} color={theme.gray} />}
-      />
+        <CustomTextInput
+          placeholder="Enter your matricule"
+          value={matricule}
+          onChangeText={text => setMatricule(text)}
+          icon={<Icons size={20} icon={IconType.LOCK} color={theme.gray} />}
+        />
 
-      <CustomTextInput
-        placeholder="Enter your matricule"
-        value={matricule}
-        onChangeText={text => setMatricule(text)}
-        icon={<Icons size={20} icon={IconType.LOCK} color={theme.gray} />}
-      />
+        <CustomTextInput
+          placeholder="Number of Copies"
+          value={copies}
+          onChangeText={text => setCopies(text)}
+          icon={<Icons size={20} icon={IconType.PENCIL} color={theme.gray} />}
+        />
 
-      <CustomTextInput
-        placeholder="Number of Copies"
-        value={copies}
-        onChangeText={text => setCopies(text)}
-        icon={<Icons size={20} icon={IconType.PENCIL} color={theme.gray} />}
-      />
-
-      
-      <Text style={styles.label}>Enrolled:</Text>
+        <Text style={styles.label}>Enrolled:</Text>
         <View style={styles.genderContainer}>
           <TouchableOpacity
             style={[
@@ -134,7 +131,6 @@ const ApplyForm: FC<Props> = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
-       
         <Text style={styles.label}>Application Type:</Text>
         <View style={styles.genderContainer}>
           <Text style={styles.radioText}>{calculateValues(3000)}</Text>
@@ -187,21 +183,27 @@ const ApplyForm: FC<Props> = ({navigation}) => {
         </View>
 
         <CustomTextInput
-        placeholder="Amount Payable"
-        value={calculatedAmount}
-        onChangeText={text => setCalculatedAmount(text)}
-        icon={<Icons size={20} icon={IconType.TRANSACTION_HISTORY} color={theme.gray} />}
-        editable={false}
+          placeholder="Amount Payable"
+          value={calculatedAmount}
+          onChangeText={text => setCalculatedAmount(text)}
+          icon={
+            <Icons
+              size={20}
+              icon={IconType.TRANSACTION_HISTORY}
+              color={theme.gray}
+            />
+          }
+          editable={false}
         />
 
         <CustomTextInput
           placeholder="Payer Phone Number"
           value={number}
           onChangeText={text => setNumber(text)}
-          icon={<Icons size={20} icon={IconType.PHONE_MSG} color={theme.gray} />}
+          icon={
+            <Icons size={20} icon={IconType.PHONE_MSG} color={theme.gray} />
+          }
         />
-
-       
 
         <TouchableOpacity
           style={styles.submitButton}
@@ -209,8 +211,6 @@ const ApplyForm: FC<Props> = ({navigation}) => {
           <Text style={{color: 'white'}}>Apply</Text>
         </TouchableOpacity>
       </View>
-
-      
     </View>
   );
 };
