@@ -6,14 +6,31 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
+  ScrollView,
 } from 'react-native';
 import styles from './dashboard.style';
 import Avatar from '../../components/avatar/Avatar';
 import theme from '../../resources/theme';
 import Icons, {IconType} from '../../components/icon/icons.component';
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import htmlContent from './extras';
 
 type Props = {
   navigation?: any;
+};
+
+const createPDF = async () => {
+  let options = {
+    html: htmlContent,
+    fileName: 'transcript',
+    directory: 'Documents',
+    width: 850,
+    height: 595,
+  };
+
+  let file = await RNHTMLtoPDF.convert(options);
+  console.log(file.filePath);
+  // alert(file.filePath);
 };
 
 const appliedTranscript = [
@@ -59,7 +76,9 @@ const renderApplication = (
               top: theme.screenHeight * 0.035,
               left: theme.screenWidth * 0.01,
             }}>
-            <TouchableOpacity>
+            <TouchableOpacity
+            // onPress={() => navigation.navigate('viewtranscript')}
+            >
               <Text
                 style={{
                   textDecorationLine: 'underline',
@@ -99,22 +118,31 @@ const DashboardScreen: FC<Props> = ({navigation}) => {
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                marginLeft: 10,
+                height: theme.screenHeight * 0.2,
+                alignItems: 'center',
+                justifyContent: 'center',
+                left: theme.screenWidth * 0.03,
               }}>
               <Text
                 style={{
-                  fontSize: theme.fontSizeNormal,
+                  fontSize: theme.fontSizeLarge,
                   fontWeight: '800',
                   color: 'black',
                 }}>
                 Neba Emmanuel
               </Text>
-              <Text style={{color: 'black', fontSize: theme.fontSizeSmall}}>
-                keep Track of your Results!
+              <Text style={{color: 'black', fontSize: theme.fontSizeNormal}}>
+                CT22A287
+              </Text>
+              <Text style={{color: 'black', fontSize: theme.fontSizeNormal}}>
+                Computer Engineering
               </Text>
             </View>
+            <TouchableOpacity style={{left: theme.screenWidth * 0.08}} onPress={() => navigation.navigate('Notifications')}>
+              <Icons size={30} icon={IconType.NOTIFICATION} color={theme.black}/>
+            </TouchableOpacity>
           </View>
-          <Icons size={40} icon={IconType.NOTIFICATION} color={theme.black} />
+          {/* <Icons size={30} icon={IconType.NOTIFICATION} color={theme.black} /> */}
         </View>
         <View style={styles.applyContainer}>
           <View style={{flexDirection: 'row'}}>
@@ -148,9 +176,11 @@ const DashboardScreen: FC<Props> = ({navigation}) => {
         </View>
         <View>
           <Text style={{color: '#000', marginVertical: 15}}>History</Text>
-          <>{renderApplication}</>
+          <View style={{paddingBottom: theme.screenHeight * 1, marginBottom: theme.screenHeight * 0.2 }}>
+            {renderApplication}
+          </View>
         </View>
-      </View>
+        </View>
     </SafeAreaView>
   );
 };

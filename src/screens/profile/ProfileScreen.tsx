@@ -96,6 +96,11 @@ const ProfileScreen: FC<Props> = ({navigation}) => {
             style={{left: theme.screenWidth * 0.02}}>
             <Icons size={20} icon={IconType.ARROW_LEFT} color={theme.white} />
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Login')}
+            style={{right: theme.screenWidth * 0.06}}>
+            <Icons size={20} icon={IconType.LOGIN} color={theme.white} />
+          </TouchableOpacity>
         </View>
         <View style={styles.avatar}>
           <Text style={styles.username}>NE</Text>
