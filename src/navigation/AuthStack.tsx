@@ -15,6 +15,7 @@ import OrderScreen from '../screens/orders/OrderScreen';
 import ProfileScreen from '../screens/profile/ProfileScreen';
 import theme from '../resources/theme';
 import PaymentMethod from '../screens/payment/paymentScreen';
+import NotificationScreen from '../screens/notifications/NotificationScreen';
 import ViewTranscript from '../screens/dashboard/viewTranscript';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -27,6 +28,7 @@ const HomeTabs: FC = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        tabBarShowLabel: false,
         tabBarActiveTintColor: theme.black,
         tabBarStyle: {backgroundColor: theme.primary},
       }}>
@@ -37,7 +39,7 @@ const HomeTabs: FC = () => {
           tabBarIcon: ({focused}) => (
             <Icon
               icon={IconType.HOME}
-              color={focused ? theme.white : theme.black}
+              color={focused ? theme.white : theme.grayLight}
               size={26}
             />
           ),
@@ -52,7 +54,7 @@ const HomeTabs: FC = () => {
           tabBarIcon: ({focused}) => (
             <Icon
               icon={IconType.ORDER_HISTORY}
-              color={focused ? theme.white : theme.black}
+              color={focused ? theme.white : theme.grayLight}
               size={26}
             />
           ),
@@ -79,6 +81,7 @@ const AuthStack: FC = () => {
       <Stack.Screen name="sucessscreen" component={SuccessScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="paymentmethod" component={PaymentMethod} />
+      <Stack.Screen name="Notifications" component={NotificationScreen} />
       <Stack.Screen name='viewtranscript' component={ViewTranscript} />
     </Stack.Navigator>
   );
