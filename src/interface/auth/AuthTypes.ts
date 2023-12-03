@@ -14,3 +14,12 @@ export interface RegisterDataType extends LoginDataType {
   phoneNumber: string;
   confirmPassword: string;
 }
+
+export interface TranscriptDataType {
+  fullName: string;
+  matricule: string;
+  level: string;
+  date: string;
+  type: string;
+  // amount: string;
+}
