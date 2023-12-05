@@ -16,6 +16,7 @@ type Props = {
 export enum ButtonType {
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
+  ERROR = 'error',
 }
 
 const Button: FC<Props> = ({
@@ -33,6 +34,10 @@ const Button: FC<Props> = ({
 
   if (btnType === ButtonType.SECONDARY) {
     active = styles.secondaryButton;
+    color = theme.white;
+  }
+  if (btnType === ButtonType.ERROR) {
+    active = styles.error;
     color = theme.white;
   }
   if (disabled) {

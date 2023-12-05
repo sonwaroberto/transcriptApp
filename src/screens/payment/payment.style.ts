@@ -66,6 +66,11 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 30,
   },
+  wrapper2: {
+    width: '90%',
+    marginTop: 30,
+    padding: 16,
+  },
 });
 
 export default styles;

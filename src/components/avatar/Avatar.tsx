@@ -5,7 +5,7 @@ import theme from '../../resources/theme';
 const Avatar: FC = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.username}>NE</Text>
+      <Text style={styles.username}>TE</Text>
     </View>
   );
 };

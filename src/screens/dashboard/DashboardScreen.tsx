@@ -6,7 +6,6 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
-  ScrollView,
 } from 'react-native';
 import styles from './dashboard.style';
 import Avatar from '../../components/avatar/Avatar';
@@ -14,23 +13,11 @@ import theme from '../../resources/theme';
 import Icons, {IconType} from '../../components/icon/icons.component';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import htmlContent from './extras';
+import {useAppSelector} from '../../redux/typings';
+import {RootState} from '../../redux/store';
 
 type Props = {
   navigation?: any;
-};
-
-const createPDF = async () => {
-  let options = {
-    html: htmlContent,
-    fileName: 'transcript',
-    directory: 'Documents',
-    width: 850,
-    height: 595,
-  };
-
-  let file = await RNHTMLtoPDF.convert(options);
-  console.log(file.filePath);
-  // alert(file.filePath);
 };
 
 const appliedTranscript = [
@@ -41,76 +28,97 @@ const appliedTranscript = [
   {id: 5, number: 0o5},
 ];
 
-const renderApplication = (
-  <FlatList
-    keyExtractor={transcript => transcript.id.toString()}
-    data={appliedTranscript}
-    renderItem={({item}) => {
-      return (
-        <View style={styles.transContainer}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              top: theme.screenHeight * 0.025,
-              left: theme.screenWidth * 0.01,
-            }}>
-            <Image
-              source={require('../../resources/icons/summary.png')}
-              style={styles.transcript}
-            />
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 17,
-                left: theme.screenWidth * 0.07,
-              }}>
-              Student Academic Record N-{item.number}
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginHorizontal: 55,
-              top: theme.screenHeight * 0.035,
-              left: theme.screenWidth * 0.01,
-            }}>
-            <TouchableOpacity
-            // onPress={() => navigation.navigate('viewtranscript')}
-            >
-              <Text
-                style={{
-                  textDecorationLine: 'underline',
-                  fontSize: 16,
-                  color: '#2372E9',
-                }}>
-                View
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Text
-                style={{
-                  textDecorationLine: 'underline',
-                  fontSize: 16,
-                  color: '#2372E9',
-                }}>
-                Download
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      );
-    }}
-  />
-);
-
 const DashboardScreen: FC<Props> = ({navigation}) => {
+  const {user} = useAppSelector((state: RootState) => state.authSlice);
+
+  const createPDF = async () => {
+    let options = {
+      html: htmlContent,
+      fileName: user?.username ?? 'transcript',
+      directory: 'Documents',
+      width: 850,
+      height: 595,
+    };
+
+    let file = await RNHTMLtoPDF.convert(options);
+    console.log(file.filePath);
+    // alert(file.filePath);
+  };
+
+  const renderApplication = (
+    <FlatList
+      keyExtractor={transcript => transcript.id.toString()}
+      data={appliedTranscript}
+      renderItem={({item}) => {
+        return (
+          <View style={styles.transContainer}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                top: theme.screenHeight * 0.025,
+                left: theme.screenWidth * 0.01,
+              }}>
+              <Image
+                source={require('../../resources/icons/summary.png')}
+                style={styles.transcript}
+              />
+              <Text
+                style={{
+                  color: '#000',
+                  fontSize: 17,
+                  left: theme.screenWidth * 0.07,
+                }}>
+                Student Academic Record N-{item.number}
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginHorizontal: 55,
+                top: theme.screenHeight * 0.035,
+                left: theme.screenWidth * 0.01,
+              }}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('viewtranscript')}>
+                <Text
+                  style={{
+                    textDecorationLine: 'underline',
+                    fontSize: 16,
+                    color: '#2372E9',
+                  }}>
+                  View
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => createPDF()}>
+                <Text
+                  style={{
+                    textDecorationLine: 'underline',
+                    fontSize: 16,
+                    color: '#2372E9',
+                  }}>
+                  Download
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
+      }}
+    />
+  );
   return (
     <SafeAreaView style={styles.safeContainer}>
       <View style={styles.container}>
         <View style={styles.head}>
-          <View style={{display: 'flex', flexDirection: 'row'}}>
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              width: '100%',
+            }}>
             <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
               <Avatar />
             </TouchableOpacity>
@@ -121,25 +129,36 @@ const DashboardScreen: FC<Props> = ({navigation}) => {
                 height: theme.screenHeight * 0.2,
                 alignItems: 'center',
                 justifyContent: 'center',
-                left: theme.screenWidth * 0.03,
+                // left: theme.screenWidth * 0.03,
               }}>
+              <Text style={{color: 'black', fontSize: theme.fontSizeNormal}}>
+                Welcome on E-Transcript
+              </Text>
               <Text
                 style={{
                   fontSize: theme.fontSizeLarge,
                   fontWeight: '800',
                   color: 'black',
                 }}>
-                Neba Emmanuel
+                {user?.username ?? 'Neba Emmanuel'}
               </Text>
-              <Text style={{color: 'black', fontSize: theme.fontSizeNormal}}>
-                CT22A287
-              </Text>
-              <Text style={{color: 'black', fontSize: theme.fontSizeNormal}}>
-                Computer Engineering
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: theme.fontSizeNormal,
+                  fontWeight: '800',
+                }}>
+                {user?.matricule ?? 'CT22A287'}
               </Text>
             </View>
-            <TouchableOpacity style={{left: theme.screenWidth * 0.08}} onPress={() => navigation.navigate('Notifications')}>
-              <Icons size={30} icon={IconType.NOTIFICATION} color={theme.black}/>
+            <TouchableOpacity
+              // style={{left: theme.screenWidth * 0.08}}
+              onPress={() => navigation.navigate('Notifications')}>
+              <Icons
+                size={30}
+                icon={IconType.NOTIFICATION}
+                color={theme.black}
+              />
             </TouchableOpacity>
           </View>
           {/* <Icons size={30} icon={IconType.NOTIFICATION} color={theme.black} /> */}
@@ -176,11 +195,15 @@ const DashboardScreen: FC<Props> = ({navigation}) => {
         </View>
         <View>
           <Text style={{color: '#000', marginVertical: 15}}>History</Text>
-          <View style={{paddingBottom: theme.screenHeight * 1, marginBottom: theme.screenHeight * 0.2 }}>
+          <View
+            style={{
+              paddingBottom: theme.screenHeight * 1,
+              marginBottom: theme.screenHeight * 0.2,
+            }}>
             {renderApplication}
           </View>
         </View>
-        </View>
+      </View>
     </SafeAreaView>
   );
 };

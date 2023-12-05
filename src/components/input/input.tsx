@@ -5,6 +5,9 @@ import {
   View,
   Text,
   TouchableOpacity,
+  KeyboardType,
+  KeyboardTypeAndroid,
+  KeyboardTypeIOS,
 } from 'react-native';
 import styles from './input.style';
 import theme from '../../resources/theme';
@@ -15,12 +18,22 @@ interface CustomTextInputProps extends TextInputProps {
   error?: string;
   secure?: boolean;
   icon?: JSX.Element;
+  value?: string;
+  setValue?: (value: string) => void;
+  label?: string;
+  defaultValue?: string;
+  otp?: boolean;
+  type?: KeyboardType | KeyboardTypeAndroid | KeyboardTypeIOS;
 }
 
 const CustomTextInput: FC<CustomTextInputProps> = ({
   error,
   secure = false,
   icon = null,
+  setValue,
+  value,
+  type,
+  otp = false,
   ...props
 }) => {
   const showError = error && error.length > 0;
@@ -30,12 +43,29 @@ const CustomTextInput: FC<CustomTextInputProps> = ({
     <View style={styles.textInputContainer}>
       <View style={styles.inputContainer}>
         {icon && icon}
-        <TextInput
-          placeholderTextColor={theme.gray}
-          style={styles.textInput}
-          {...props}
-          secureTextEntry={_secure}
-        />
+        {otp ? (
+          <TextInput
+            placeholderTextColor={theme.gray}
+            style={styles.textInput}
+            {...props}
+            value={value}
+            keyboardType={type}
+            secureTextEntry={_secure}
+            onChangeText={(text: string) => setValue && setValue(text)}
+            // onFocus={() => handleFocus()}
+            // onBlur={() => handleBlur()}3484
+          />
+        ) : (
+          <TextInput
+            placeholderTextColor={theme.gray}
+            style={styles.textInput}
+            {...props}
+            secureTextEntry={_secure}
+            // onFocus={() => handleFocus()}
+            // onBlur={() => handleBlur()}3484
+          />
+        )}
+
         {secure && (
           <TouchableOpacity
             activeOpacity={0.8}

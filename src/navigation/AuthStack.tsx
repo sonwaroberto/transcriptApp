@@ -37,7 +37,7 @@ const AuthStack: FC = () => {
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="paymentmethod" component={PaymentMethod} />
       <Stack.Screen name="Notifications" component={NotificationScreen} />
-      <Stack.Screen name='viewtranscript' component={ViewTranscript} />
+      <Stack.Screen name="viewtranscript" component={ViewTranscript} />
     </Stack.Navigator>
   );
 };
