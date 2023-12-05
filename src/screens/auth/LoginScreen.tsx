@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -14,28 +14,85 @@ import CustomTextInput from '../../components/input/input';
 import CheckBox from '../../components/checkBox/checkBox';
 import Icons, {IconType} from '../../components/icon/icons.component';
 import theme from '../../resources/theme';
+import {RootState} from '../../redux/store';
+import {useAppDispatch, useAppSelector} from '../../redux/typings';
+import Notifications, {
+  NotificationType,
+} from '../../components/notification/notification.component';
+import {loginFunc} from '../../redux/auth/thunk/auth.thunk';
+import {resetIsState} from '../../redux/auth/slices/auth.slice';
 
 type Props = {
   navigation: any;
 };
 
 type InitialValuesInput = {
-  email: string;
+  matricule: string;
   password: string;
 };
 
 const initialValuesInput: InitialValuesInput = {
-  email: '',
+  matricule: '',
   password: '',
 };
 
 const LoginScreen: FC<Props> = ({navigation}) => {
-  const [remember, setRemeber] = useState(true);
+  const [remember, setRemeber] = useState<boolean>(true);
+  const [submitted, setSubmitted] = useState<boolean>(false);
+
+  const loginState = useAppSelector((state: RootState) => state.authSlice);
+  const dispatch = useAppDispatch();
+
+  const [notify, setNotify] = useState<boolean>(false);
+  const [details, setDetails] = useState({
+    type: NotificationType.DEFAULT,
+    message: 'password error',
+  });
 
   const handleSignIn = async (values: InitialValuesInput) => {
+    setSubmitted(true);
     console.log('mein values', values);
-    navigation.navigate('AuthTabs');
+    return dispatch(
+      loginFunc({matricule: values.matricule, password: values.password}),
+    );
   };
+
+  useEffect(() => {
+    if (submitted) {
+      if (loginState.isError) {
+        setNotify(true);
+        setDetails({
+          type: NotificationType.DANGER,
+          message: loginState.message,
+        });
+        setSubmitted(false);
+      }
+      if (loginState.isSuccess) {
+        setNotify(true);
+        setDetails({
+          type: NotificationType.SUCCESS,
+          message: 'successfully login',
+        });
+        setSubmitted(false);
+      }
+    }
+  }, [loginState, submitted]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetIsState());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!loginState.user?.id) {
+      return;
+    }
+    if (loginState.user?.id) {
+      navigation.navigate('Dashboard');
+    }
+  }, [dispatch, navigation, loginState]);
 
   const renderForm = ({
     handleChange,
@@ -48,12 +105,13 @@ const LoginScreen: FC<Props> = ({navigation}) => {
     <>
       <CustomTextInput
         placeholder="Matriculation Number"
-        onChangeText={handleChange('email')}
-        onBlur={handleBlur('email')}
-        value={values.email}
-        keyboardType="email-address"
-        error={errors.email}
-        icon={<Icons size={20} icon={IconType.PHONE} color={theme.gray} />}
+        onChangeText={handleChange('matricule')}
+        onBlur={handleBlur('matricule')}
+        value={values.matricule}
+        error={errors.matricule}
+        icon={
+          <Icons size={20} icon={IconType.IDENTIFICATION} color={theme.gray} />
+        }
       />
       <CustomTextInput
         placeholder="Password"
@@ -79,10 +137,10 @@ const LoginScreen: FC<Props> = ({navigation}) => {
       </View>
       <View style={styles.buttonWrapper}>
         <Button
-          disabled={!isValid}
-          // loading={loading}
           btnText="Sign In"
           onPress={handleSubmit}
+          loading={submitted && loginState.isLoading}
+          disabled={submitted && (!isValid || loginState.isLoading)}
         />
       </View>
     </>
@@ -115,6 +173,14 @@ const LoginScreen: FC<Props> = ({navigation}) => {
           </View>
         </View>
       </ScrollView>
+      {notify && (
+        <Notifications
+          show={notify}
+          setShow={setNotify}
+          type={details.type}
+          message={details.message}
+        />
+      )}
     </SafeAreaView>
   );
   // }

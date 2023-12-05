@@ -1,120 +1,136 @@
-const data = [
-    {
-      studNo: 'CT22A287',
-      name: {fname: 'NEBA', others: 'EMMANUEL FUH'},
-      date: '03 SEPTEMBER 2023',
-      dob: '01/10/2001',
-      pob: 'Kumba',
-      sex: 'M',
-      doe: 'SEPTEMBER 2023',
-      faculty: 'COLLEGE OF TECHNOLOGY',
-      dept: 'COMPUTER ENGINEERING',
-      major: 'COMPUTER ENGINEERING',
-      minor: '',
-      degree: 'B.Tech COMPUTER ENGINEERING',
-      degreeCon: '',
-      fsemester: [
-        {
-          code: 'CEC321',
-          title: 'Programming with UML',
-          type: 'C',
-          creditValue: 4,
-          grade: 'B+',
-          creditsEarned: 4,
-          creditGpa: 4,
-          gradePoints: 3.5,
-        },
-        {
-          code: 'CEC419',
-          title: 'Design Project',
-          type: 'C',
-          creditValue: 6,
-          grade: 'B+',
-          creditsEarned: 6,
-          creditGpa: 6,
-          gradePoints: 3.5,
-        },
-        {
-          code: 'ENG101',
-          title: 'USE OF ENGLISH I',
-          type: 'C',
-          creditValue: 2,
-          grade: 'A',
-          creditsEarned: 2,
-          creditGpa: 2,
-          gradePoints: 4,
-        },
-        {
-          code: 'SPT100',
-          title: 'SPORTS',
-          type: 'C',
-          creditValue: 2,
-          grade: 'B+',
-          creditsEarned: 2,
-          creditGpa: 2,
-          gradePoints: 3.5,
-        },
-        {
-          tce: 36,
-          gce: 36,
-          tca: 40,
-          gca: 40,
-          sgpa: 3.5,
-        },
-      ],
-      ssemester: [
-        {
-          code: 'CEC304',
-          title: 'Data Security and Intergrity',
-          type: 'C',
-          creditValue: 4,
-          grade: 'B+',
-          creditsEarned: 4,
-          creditGpa: 4,
-          gradePoints: 3.5,
-        },
-        {
-          code: 'CEC418',
-          title: 'Software Construction and Evolution',
-          type: 'C',
-          creditValue: 4,
-          grade: 'B+',
-          creditsEarned: 4,
-          creditGpa: 4,
-          gradePoints: 3.5,
-        },
-        {
-          code: 'CEC430',
-          title: 'Full Stack Web Development Technologies',
-          type: 'C',
-          creditValue: 4,
-          grade: 'A',
-          creditsEarned: 4,
-          creditGpa: 4,
-          gradePoints: 4,
-        },
-        {
-          code: 'CVE100',
-          title: 'Civics and Ethics',
-          type: 'C',
-          creditValue: 4,
-          grade: 'B',
-          creditsEarned: 4,
-          creditGpa: 4,
-          gradePoints: 3.0,
-        },
-        {
-          tce: 36,
-          gce: 36,
-          tca: 40,
-          gca: 40,
-          sgpa: 3.5,
-        },
-      ],
-    },
-  ];
+import storage from '../../utils/storage';
 
-  const htmlContent = `
+let localUserData = {
+  fname: null,
+  matricule: null,
+};
+const fetchLocalUser = async () => {
+  const localUser = await storage.load('@user');
+  localUserData.fname = localUser?.username ?? null;
+  localUserData.matricule = localUser?.matricule ?? null;
+  console.log('localUserData', localUserData);
+};
+fetchLocalUser();
+const data = [
+  {
+    studNo: localUserData?.matricule ?? 'CT22A293',
+    name: {
+      fname: localUserData?.fname ?? 'SONWA SONWA',
+      others: 'BORIS ROBERTO',
+    },
+    date: '05 DECEMBER 2023',
+    dob: '02/05/2003',
+    pob: 'Buea',
+    sex: 'M',
+    doe: 'SEPTEMBER 2023',
+    faculty: 'COLLEGE OF TECHNOLOGY',
+    dept: 'COMPUTER ENGINEERING',
+    major: 'COMPUTER ENGINEERING',
+    minor: '',
+    degree: 'B.Tech COMPUTER ENGINEERING',
+    degreeCon: '',
+    fsemester: [
+      {
+        code: 'CEC321',
+        title: 'Programming with UML',
+        type: 'C',
+        creditValue: 4,
+        grade: 'B+',
+        creditsEarned: 4,
+        creditGpa: 4,
+        gradePoints: 3.5,
+      },
+      {
+        code: 'CEC419',
+        title: 'Design Project',
+        type: 'C',
+        creditValue: 6,
+        grade: 'B+',
+        creditsEarned: 6,
+        creditGpa: 6,
+        gradePoints: 3.5,
+      },
+      {
+        code: 'ENG101',
+        title: 'USE OF ENGLISH I',
+        type: 'C',
+        creditValue: 2,
+        grade: 'A',
+        creditsEarned: 2,
+        creditGpa: 2,
+        gradePoints: 4,
+      },
+      {
+        code: 'SPT100',
+        title: 'SPORTS',
+        type: 'C',
+        creditValue: 2,
+        grade: 'B+',
+        creditsEarned: 2,
+        creditGpa: 2,
+        gradePoints: 3.5,
+      },
+      {
+        tce: 36,
+        gce: 36,
+        tca: 40,
+        gca: 40,
+        sgpa: 3.5,
+      },
+    ],
+    ssemester: [
+      {
+        code: 'CEC304',
+        title: 'Data Security and Intergrity',
+        type: 'C',
+        creditValue: 4,
+        grade: 'B+',
+        creditsEarned: 4,
+        creditGpa: 4,
+        gradePoints: 3.5,
+      },
+      {
+        code: 'CEC418',
+        title: 'Software Construction and Evolution',
+        type: 'C',
+        creditValue: 4,
+        grade: 'B+',
+        creditsEarned: 4,
+        creditGpa: 4,
+        gradePoints: 3.5,
+      },
+      {
+        code: 'CEC430',
+        title: 'Full Stack Web Development Technologies',
+        type: 'C',
+        creditValue: 4,
+        grade: 'A',
+        creditsEarned: 4,
+        creditGpa: 4,
+        gradePoints: 4,
+      },
+      {
+        code: 'CVE100',
+        title: 'Civics and Ethics',
+        type: 'C',
+        creditValue: 4,
+        grade: 'B',
+        creditsEarned: 4,
+        creditGpa: 4,
+        gradePoints: 3.0,
+      },
+      {
+        tce: 36,
+        gce: 36,
+        tca: 40,
+        gca: 40,
+        sgpa: 3.5,
+      },
+    ],
+  },
+];
+
+const htmlContent = `
   <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,8 +146,8 @@ table{
 <div>
 <table border="1">
 ${data
-.map(
-  info => `
+  .map(
+    info => `
   <tr style="height: -50%;">
       <td rowspan="2" colspan="4" style="background-color: rgb(196, 188, 188);; text-align: left; font-size: 24px; font-weight: bold;">
           <span>UNIVERSITY OF BUEA<br>
@@ -362,12 +378,12 @@ ${data
       </td>
   </tr>
   `,
-)
-.join('')}
+  )
+  .join('')}
 </table>
 </div>
 </body>
 </html>   
   `;
 
-export default htmlContent
+export default htmlContent;

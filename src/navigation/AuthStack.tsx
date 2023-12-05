@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import Icon, {IconType} from '../components/icon/icons.component';
 
 import OnboardingScreen from '../screens/onboardingscreen/onboardingScreen';
 import LoginScreen from '../screens/auth/LoginScreen';
@@ -11,9 +10,8 @@ import DashboardScreen from '../screens/dashboard/DashboardScreen';
 import ApplyForm from '../screens/applyForm/applyForm';
 import LoadScreen from '../screens/applyForm/loadScreen';
 import SuccessScreen from '../screens/applyForm/successScreen';
-import OrderScreen from '../screens/orders/OrderScreen';
 import ProfileScreen from '../screens/profile/ProfileScreen';
-import theme from '../resources/theme';
+
 import PaymentMethod from '../screens/payment/paymentScreen';
 import NotificationScreen from '../screens/notifications/NotificationScreen';
 import ViewTranscript from '../screens/dashboard/viewTranscript';
@@ -24,54 +22,11 @@ const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
 
-const HomeTabs: FC = () => {
-  return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarShowLabel: false,
-        tabBarActiveTintColor: theme.black,
-        tabBarStyle: {backgroundColor: theme.primary},
-      }}>
-      <Tab.Screen
-        name="Home"
-        component={DashboardScreen}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <Icon
-              icon={IconType.HOME}
-              color={focused ? theme.white : theme.grayLight}
-              size={26}
-            />
-          ),
-          tabBarActiveTintColor: theme.white,
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="Order"
-        component={OrderScreen}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <Icon
-              icon={IconType.ORDER_HISTORY}
-              color={focused ? theme.white : theme.grayLight}
-              size={26}
-            />
-          ),
-          tabBarActiveTintColor: theme.white,
-          headerShown: false,
-        }}
-      />
-    </Tab.Navigator>
-  );
-};
-
 const AuthStack: FC = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-      <Stack.Screen name="AuthTabs" component={HomeTabs} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
@@ -82,7 +37,7 @@ const AuthStack: FC = () => {
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="paymentmethod" component={PaymentMethod} />
       <Stack.Screen name="Notifications" component={NotificationScreen} />
-      <Stack.Screen name='viewtranscript' component={ViewTranscript} />
+      <Stack.Screen name="viewtranscript" component={ViewTranscript} />
     </Stack.Navigator>
   );
 };

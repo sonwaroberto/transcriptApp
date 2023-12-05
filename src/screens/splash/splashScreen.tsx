@@ -10,7 +10,7 @@ const SplashScreen: FC<Props> = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate('Onboarding');
-    }, 1000);
+    }, 500);
   }, [navigation]);
   return (
     <View style={styles.container}>

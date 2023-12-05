@@ -1,9 +1,13 @@
 import * as yup from 'yup';
 const signUpValidationSchema = yup.object().shape({
+  matricule: yup
+    .string()
+    .min(5, 'Matriculation Number must be at least 5 characters')
+    .required('Matriculation Number is required'),
   fullName: yup
     .string()
-    .matches(/(\w.+\s).+/, 'Enter at least 5 characters')
-    .required('Matriculation Number is required'),
+    .min(5, 'full name must be at least 5 characters')
+    .required('full name is required'),
   phoneNumber: yup
     .string()
     .matches(/^\+237(6|2|3|7)\d{8}$/, 'Invalid Cameroon phone number')

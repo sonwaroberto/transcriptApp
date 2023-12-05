@@ -28,6 +28,10 @@ const styles = StyleSheet.create({
     color: theme.white,
     backgroundColor: theme.secondary,
   },
+  error: {
+    color: theme.white,
+    backgroundColor: 'red',
+  },
   disableBtn: {
     opacity: 0.7,
   },
