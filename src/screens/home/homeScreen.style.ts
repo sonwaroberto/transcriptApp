@@ -97,6 +97,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     color: '#1E1E1EB2',
   },
+  mapContainer: {
+    flex: 1,
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },  
 });
 
 export default styles;

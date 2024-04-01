@@ -106,6 +106,9 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
+    implementation 'com.airbnb.android:react-native-maps:1.9.0' // Use the appropriate version
+    // implementation '@react-native-community/geolocation:react-native-geolocation:3.1.0' // Use the appropriate version
+
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {

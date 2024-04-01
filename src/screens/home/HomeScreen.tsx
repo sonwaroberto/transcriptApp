@@ -1,54 +1,67 @@
-import React, {FC} from 'react';
-import {SafeAreaView, View, Text, ImageBackground} from 'react-native';
+import React, { FC, useEffect, useState } from 'react';
+import { SafeAreaView, View, Text, ImageBackground } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
+import Geolocation from '@react-native-community/geolocation';
 import styles from './homeScreen.style';
-import Button, {ButtonType} from '../../components/button/button';
+import Button, { ButtonType } from '../../components/button/button';
 
 type Props = {
   navigation?: any;
 };
 
-const HomeScreen: FC<Props> = ({navigation}) => {
+const HomeScreen: FC<Props> = ({ navigation }) => {
+  const [region, setRegion] = useState({
+    latitude: 0,
+    longitude: 0,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  });
+
+  useEffect(() => {
+    // Get current location when the component mounts
+    Geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setRegion({
+          latitude,
+          longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        });
+      },
+      (error) => console.error(error),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+
+    // Watch for changes in the user's location
+    const watchId = Geolocation.watchPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setRegion({
+          latitude,
+          longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        });
+      },
+      (error) => console.error(error),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10 }
+    );
+
+    // Clean up the watchId on component unmount
+    return () => Geolocation.clearWatch(watchId);
+  }, []);
+
   return (
     <SafeAreaView style={styles.safeContainer}>
       <View style={styles.container}>
-        <View style={styles.section}>
-          <View style={styles.brandWrapper}>
-            <ImageBackground
-              source={require('../../assets/images/job2.jpg')}
-              resizeMode="cover"
-              style={styles.image}
-            />
-          </View>
+        <View style={styles.mapContainer}>
+          <MapView style={styles.map} region={region}>
+            <Marker coordinate={{ latitude: region.latitude, longitude: region.longitude }} />
+          </MapView>
         </View>
         <View style={styles.section2}>
-          <View style={[styles.section]}>
-            <Text style={[styles.title, styles.appTitle]}>
-              Welcome on <Text style={styles.appName}>E-Transcript</Text>
-            </Text>
-            <Text style={styles.subtitle}>
-              Get your transcript in just a few clicks and minutes. Save
-              valuable time!
-            </Text>
-            <Button
-              onPress={() => navigation.navigate('Register')}
-              btnText="Register Now"
-            />
-            <View style={styles.divider}>
-              <View style={styles.horizontalRule} />
-              <Text style={styles.orText}>or</Text>
-              <View style={styles.horizontalRule} />
-            </View>
-            <Button
-              onPress={() => navigation.navigate('Login')}
-              btnText="Sign In"
-              btnType={ButtonType.SECONDARY}
-            />
-            <View>
-              <Text style={styles.terms}>
-                By continuing, you agree to our terms & conditions
-              </Text>
-            </View>
-          </View>
+          {/* Rest of your UI components */}
         </View>
       </View>
     </SafeAreaView>
